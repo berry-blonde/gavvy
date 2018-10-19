@@ -15,7 +15,7 @@ async def on_ready():
 
 @client.command(name='cat',
                 brief=" = Gavin tells you something about his cat. Maybe.")
-async def cat(context):
+async def cat():
     possible_responses = [
         "His name is Gilbert.",
         "What's it to ya?",
