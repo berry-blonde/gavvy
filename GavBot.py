@@ -231,6 +231,11 @@ async def on_message(message):
             return
         else:
             await client.send_message(message.channel, "Morning, SLUTS")
+    elif message.content.startswith('morning'):
+        if message.author.id == "467913111551082518":
+            return
+        else:
+            await client.send_message(message.channel, "Morning, SLUTS")
     elif 'licc' in message.content:
         await client.send_message(message.channel, "licc this DICK")
     elif message.content.startswith('hello'):
