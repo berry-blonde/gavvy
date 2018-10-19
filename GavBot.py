@@ -223,11 +223,11 @@ async def on_message(message):
         await client.send_message(message.channel, "OOF")
     elif 'hewwo' in message.content:
         await client.send_message(message.channel, "hewwo owo")
-    elif 'good morning' in message.content:
+    elif message.content.startswith('good morning'):
         await client.send_message(message.channel, "Morning, SLUTS")
     elif 'licc' in message.content:
         await client.send_message(message.channel, "licc this DICK")
-    elif 'hello' in message.content:
+    elif message.content.startswith('hello'):
         await client.send_message(message.channel, "hello, SLUTS")
     elif 'gavin stop' in message.content:
         await client.send_message(message.channel, "I'M A BAD BITCH YOU CAN'T STOP ME")
