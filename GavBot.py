@@ -13,26 +13,19 @@ client = Bot(command_prefix=BOT_PREFIX)
 async def on_ready():
     await client.change_presence(game=discord.Game(name="with Connor's dick"))
 
-##@client.command(name='cat',
-                ##brief=" = Gavin tells you something about his cat. Maybe.",
-                ##pass_context=True)
-##async def cat(context):
-##    possible_responses = [
-##        "His name is Gilbert.",
-##        "What's it to ya?",
-##        "He's a Maine Coon."
-##    ]
-##
-##    await client.say(random.choice(possible_responses) + ' ' + context.message.author.mention)
+@client.command(name='cat',
+                brief=" = Gavin tells you something about his cat. Maybe.")
+async def cat(context):
+    possible_responses = [
+        "His name is Gilbert.",
+        "What's it to ya?",
+        "Gil's a Maine Coon.",
+        "I also got a kitten, called it Fucknugget. Not that Connor is too happy about the name.",
+        "Gilbert might be a bitch, but Fucknugget is chaotic evil i swear.",
+        "Both Gil and Fucknugget are way too fucking needy for their own good. Keep stealing my bed and boyfriend."
+    ]
 
-@client.command(name='cat')
-async def cat():
-    memes_submissions = reddit.subreddit('cats').hot()
-    post_to_pick = random.randint(1, 10)
-    for i in range(0, post_to_pick):
-        submission = next(x for x in memes_submissions if not x.stickied)
-
-    await client.say(submission.url)
+    await client.say(random.choice(possible_responses))
 
 
 @client.command(name='hello',
