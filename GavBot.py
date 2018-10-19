@@ -14,8 +14,9 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name="with Connor's dick"))
 
 @client.command(name='cat',
-                brief=" = Gavin tells you something about his cat. Maybe.")
-async def cat():
+                brief=" = Gavin tells you something about his cat. Maybe.",
+                pass_context=True)
+async def cat(context):
     possible_responses = [
         "His name is Gilbert.",
         "What's it to ya?",
