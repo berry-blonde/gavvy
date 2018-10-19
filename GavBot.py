@@ -16,15 +16,23 @@ async def on_ready():
 @client.command(name='cat',
                 brief=" = Gavin tells you something about his cat. Maybe.",
                 pass_context=True)
-async def cat(context):
-    possible_responses = [
-        "His name is Gilbert.",
-        "What's it to ya?",
-        "He's a Maine Coon."
-    ]
+##async def cat(context):
+##    possible_responses = [
+##        "His name is Gilbert.",
+##        "What's it to ya?",
+##        "He's a Maine Coon."
+##    ]
+##
+##    await client.say(random.choice(possible_responses) + ' ' + context.message.author.mention)
 
-    await client.say(random.choice(possible_responses) + ' ' + context.message.author.mention)
+@bot.command()
+async def cat():
+    memes_submissions = reddit.subreddit('cats').hot()
+    post_to_pick = random.randint(1, 10)
+    for i in range(0, post_to_pick):
+        submission = next(x for x in memes_submissions if not x.stickied)
 
+    await bot.say(submission.url)
 @client.command(name='hello',
                 brief= " = Say hello to Gavin.",
                 pass_context=True)
