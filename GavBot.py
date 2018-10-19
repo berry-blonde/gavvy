@@ -222,9 +222,15 @@ async def on_message(message):
     elif ' oof' in message.content:
         await client.send_message(message.channel, "OOF")
     elif 'hewwo' in message.content:
-        await client.send_message(message.channel, "hewwo owo")
+        if message.author.id == "467913111551082518":
+            return
+        else:
+            await client.send_message(message.channel, "hewwo owo")
     elif message.content.startswith('good morning'):
-        await client.send_message(message.channel, "Morning, SLUTS")
+        if message.author.id == "467913111551082518":
+            return
+        else:
+            await client.send_message(message.channel, "Morning, SLUTS")
     elif 'licc' in message.content:
         await client.send_message(message.channel, "licc this DICK")
     elif message.content.startswith('hello'):
