@@ -328,13 +328,6 @@ async def bottom():
     embed.set_image(url="https://i.kym-cdn.com/photos/images/newsfeed/001/171/241/942.jpg")
     await client.say(embed=embed)
 
-@client.command(name='kinkshame',
-                brief= " = kinkshame someone.")
-async def kinkshame():
-    embed = discord.Embed()
-    embed.set_image(url="https://66.media.tumblr.com/38cb8164b99a32bdc1a067075f63ecad/tumblr_opnib7DvNl1uaylcyo1_1280.gif")
-    await client.say(embed=embed)
-
 @client.command(name='kinkshame + user mention',
                 brief= " = kinkshame someone specific.",
                 pass_context=True)
@@ -343,6 +336,16 @@ async def kinkshame(context, target: discord.Member):
     embed.set_image(url="https://66.media.tumblr.com/38cb8164b99a32bdc1a067075f63ecad/tumblr_opnib7DvNl1uaylcyo1_1280.gif")
     await client.say(embed=embed)
     await client.say("you have been kinkshamed by " + context.message.author.mention + " you horny little bastard " + target.mention)
+    time.sleep(1)
+
+@client.command(name='kinkshame',
+                brief= " = kinkshame someone.")
+async def kinkshame():
+    embed = discord.Embed()
+    embed.set_image(url="https://66.media.tumblr.com/38cb8164b99a32bdc1a067075f63ecad/tumblr_opnib7DvNl1uaylcyo1_1280.gif")
+    await client.say(embed=embed)
+
+
 
 @client.command(name='nsfw',
                 brief= " = Gavin tells the Server this is NSFW.")
