@@ -52,6 +52,7 @@ async def horny():
     embed = discord.Embed()
     embed.set_image(url="https://media.discordapp.net/attachments/476189549366738944/490559000631443466/DbozB11V0AMVmgN.jpg")
     await client.say(embed=embed)
+    
 #475904821518532629
 #478418418727518208
 @client.event
@@ -327,12 +328,20 @@ async def bottom():
     embed.set_image(url="https://i.kym-cdn.com/photos/images/newsfeed/001/171/241/942.jpg")
     await client.say(embed=embed)
 
+##@client.command(name='kinkshame',
+##                brief= " = kinkshame someone.")
+##async def kinkshame():
+##    embed = discord.Embed()
+##    embed.set_image(url="https://66.media.tumblr.com/38cb8164b99a32bdc1a067075f63ecad/tumblr_opnib7DvNl1uaylcyo1_1280.gif")
+##    await client.say(embed=embed)
+
 @client.command(name='kinkshame',
-                brief= " = kinkshame someone.")
-async def kinkshame():
+                brief= " = kinkshame someone specific.",
+                pass_context=True)
+async def kinkshame(context, target: discord.Member):
     embed = discord.Embed()
     embed.set_image(url="https://66.media.tumblr.com/38cb8164b99a32bdc1a067075f63ecad/tumblr_opnib7DvNl1uaylcyo1_1280.gif")
-    await client.say(embed=embed)
+    await client.say(embed=embed + "you have been kinkshamed by " + context.message.author.mention + " you horny little bastard " + target.mention)
 
 @client.command(name='nsfw',
                 brief= " = Gavin tells the Server this is NSFW.")
@@ -414,12 +423,7 @@ async def verse(target: discord.Member):
 async def triggers():
     await client.say("```Chat Triggers \n Gavin will resonds to the following keywords in chat: \n - Connor \n - convin \n - Gavin \n - bromance \n - fuck off gavin \n - oh fuck off gavin \n - fuck you gavin \n - oh fuck you gavin \n - fuck yourself gavin \n - fuck me gavin \n - I love you gavin \n as well as a few other, fun ones ;)```")
 
-##@client.event
-##async def on_message(message):
-##        if message.content.startswith("g!say"):
-##            await client.send_message(message.channel, message.content[5:])
-##            await client.delete_message(message)
-##        await client.process_commands(message)
+
         
 
 
