@@ -301,8 +301,6 @@ async def on_message(message):
             await client.send_message(message.channel, "nah you're fucking not dude")
         else:
             return
-    elif "gavpocalypse" in message.content:
-        await client.send_message(message.channel, ":ban:")
 
 ##    elif message.content.startswith("g!say"):
 ##        await client.send_message(message.channel, message.content[5:])
