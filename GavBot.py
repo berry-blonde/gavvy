@@ -337,12 +337,12 @@ async def kinkshame(context, target: discord.Member):
     await client.say(embed=embed)
     await client.say("you have been kinkshamed by " + context.message.author.mention + " you horny little bastard " + target.mention)
 
-@client.command(name='kinkshame',
-                brief= " = kinkshame someone.")
-async def kinkshame():
-    embed = discord.Embed()
-    embed.set_image(url="https://66.media.tumblr.com/38cb8164b99a32bdc1a067075f63ecad/tumblr_opnib7DvNl1uaylcyo1_1280.gif")
-    await client.say(embed=embed)
+##@client.command(name='kinkshame',
+##                brief= " = kinkshame someone.")
+##async def kinkshame():
+##    embed = discord.Embed()
+##    embed.set_image(url="https://66.media.tumblr.com/38cb8164b99a32bdc1a067075f63ecad/tumblr_opnib7DvNl1uaylcyo1_1280.gif")
+##    await client.say(embed=embed)
 
 
 
