@@ -71,8 +71,8 @@ async def on_message(message):
         await client.send_message(message.channel, random.choice(msg))
     elif message.content.startswith('gavin no'):
         await client.send_message(message.channel, "Gavin YES")
-    elif message.content.startswith("hello detective reed"):
-        await client.send_message(message.channel, "Bring me a coffee dipshit")
+    elif message.content.startswith("hello gavin"):
+        await client.send_message(message.channel, "stop talking and bring me a coffee, dipshit.")
     elif message.content.startswith('gavin yes'):
         await client.send_message(message.channel, "HELL YEAH") 
     elif message.content.startswith('gavin?'):
