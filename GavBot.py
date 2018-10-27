@@ -29,10 +29,6 @@ async def cat(context):
     await client.say(random.choice(possible_responses))
 
 
-@client.command(name='hello',
-                brief= " = Say hello to Gavin.",
-                pass_context=True)
-
 async def hello(context):
     
     await client.say('Fuck off, ' + context.message.author.mention)
@@ -75,6 +71,8 @@ async def on_message(message):
         await client.send_message(message.channel, random.choice(msg))
     elif message.content.startswith('gavin no'):
         await client.send_message(message.channel, "Gavin YES")
+    elif message.content.startswith("hello detective reed"):
+        await client.send_message(message.channel, "bring me a coffee dipshit")
     elif message.content.startswith('gavin yes'):
         await client.send_message(message.channel, "HELL YEAH") 
     elif message.content.startswith('gavin?'):
