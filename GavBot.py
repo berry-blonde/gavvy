@@ -299,10 +299,10 @@ async def on_message(message):
     elif "i'm a top" in message.content:
         if message.author.id == "471890374277726209":
             await client.send_message(message.channel, "nah you're fucking not dude")
-    elif "gavpocalypse" in message.content:
-        await client.send_message(message.channel, ":ban:")
         else:
             return
+    elif "gavpocalypse" in message.content:
+        await client.send_message(message.channel, ":ban:")
 
 ##    elif message.content.startswith("g!say"):
 ##        await client.send_message(message.channel, message.content[5:])
