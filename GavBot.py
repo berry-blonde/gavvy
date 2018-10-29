@@ -210,6 +210,8 @@ async def on_message(message):
 ##        await client.send_message(message.channel, 'Phck')
     elif 'gun' in message.content:
         await client.send_message(message.channel, "I'm sorry, but the word 'gun' is banned. In the future, please use 'rooty tooty point and shooty' instead. Dipshit.")
+    elif 'rooty tooty point and shooty' in message.content:
+        await client.send_message(message.channel, "Thank you for using the correct term, asshat.")
     elif 'vore' in message.content:
         await client.send_message(message.channel, "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE")
     elif 'dick' in message.content:
