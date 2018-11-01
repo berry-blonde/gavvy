@@ -40,8 +40,15 @@ async def coffee():
     embed = discord.Embed()
     embed.set_image(url="https://em.wattpad.com/3064755cac3c2827f01e17df6e7ab606f232b7ac/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f434c617534526b7a4967746e4a413d3d2d3539333133313936322e313533616162303462623633626138633836353132383932383532362e676966?s=fit&w=720&h=720")
     await client.say(embed=embed)
+    
+@client.command(name='ded',
+                brief= " = show that you are in fact, deceased.")   
+async def ded():
+    embed = discord.Embed()
+    embed.set_image(url="https://cdn.discordapp.com/attachments/506242430375428107/507585948947578881/Screen_Shot_2018-11-01_at_9.04.04_AM.png")
+    await client.say(embed=embed)
 
-@client.command(name='horny',
+@client
                 brief= " = What do you expect from that one, huh?")
 
 async def horny():
