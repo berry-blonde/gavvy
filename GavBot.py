@@ -48,7 +48,7 @@ async def ded():
     embed.set_image(url="https://cdn.discordapp.com/attachments/506242430375428107/507585948947578881/Screen_Shot_2018-11-01_at_9.04.04_AM.png")
     await client.say(embed=embed)
 
-@client
+@client.command(name='horny',
                 brief= " = What do you expect from that one, huh?")
 
 async def horny():
