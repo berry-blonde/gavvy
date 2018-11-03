@@ -80,6 +80,8 @@ async def on_message(message):
         await client.send_message(message.channel, "Gavin YES")
     elif message.content.startswith("hello gavin"):
         await client.send_message(message.channel, "stop talking and bring me a coffee, dipshit.")
+    elif message.content.startswith("hello detective reed"):
+        await client.send_message(message.channel, "What do you want, dipshit?")
     elif message.content.startswith('gavin yes'):
         await client.send_message(message.channel, "HELL YEAH") 
     elif message.content.startswith('gavin?'):
@@ -104,7 +106,7 @@ async def on_message(message):
         ]
 
         await client.send_message(message.channel, random.choice(possible_respones))
-    elif message.content.startswith('fuck you gavin'):
+    elif 'fuck you gavin' in message.content:
         possible_responses = [
             "Name a time and a place, sweetheart.",
             "At work? Kinky.",
@@ -112,43 +114,29 @@ async def on_message(message):
             "Sorry, but I don't do charity work."
             ]
         await client.send_message(message.channel, random.choice(possible_responses))
-            
-    elif message.content.startswith('oh fuck you gavin'):
-        possible_responses = [
-            "Name a time and a place, sweetheart.",
-            "At work? Kinky.",
-            "Sorry, I don't fuck whiny bitches.",
-            "Sorry, but I don't do charity work."
-        ]
-        await client.send_message(message.channel, random.choice(possible_responses))
-    elif message.content.startswith('go fuck yourself gavin'):
+        
+    elif 'go fuck yourself gavin' in message.content:
          possible_responses = [
              "Don't mind if I do, babe.",
              "At work? Kinky.",
         ]
          await client.send_message(message.channel,random.choice(possible_responses))
-    elif message.content.startswith('fuck off gavin'):
+    elif 'fuck off gavin' in message.content:
          possible_responses = [
              "Wouldn't want to spend anymore time near you than I gotta, fuckface.",
              "Jealous?",
              "You compensating for something?"
         ]
          await client.send_message(message.channel,random.choice(possible_responses))
-    elif message.content.startswith('oh fuck off gavin'):
-         possible_responses = [
-             "Wouldn't want to spend anymore time near you than I gotta, fuckface.",
-             "Jealous?",
-             "You compensating for something?"
-        ]
-         await client.send_message(message.channel,random.choice(possible_responses))
-    elif message.content.startswith('kill yourself gavin'):
+
+    elif 'kill yourself gavin' in message.content:
          possible_responses = [
              "If I don't have to talk to you anymore? Gladly.",
              "Oh wow. Such clever. Much insult. I am truly hurt.",
              "only if you go first, babe ~ "
         ]
          await client.send_message(message.channel,random.choice(possible_responses))
-    elif message.content.startswith('i love you gavin'):
+    elif 'i love you gavin' in message.content:
          possible_responses = [
              "A horrible decision, really.",
              "Oh, really?",
@@ -162,8 +150,6 @@ async def on_message(message):
             "Uh... shit, phck off why should I do what you say?! You're not the boss of me!",
         ]
         await client.send_message(message.channel,random.choice(possible_responses))   
-    elif 'markus is a bottom' in message.content:
-        await client.send_message(message.channel,'he fucking is')
     elif 'fuck me gavin' in message.content:
         embed = discord.Embed()
         embed.set_image(url="https://78.media.tumblr.com/f5d09004bbc90e513437b85ab1624b47/tumblr_inline_p9wi304wm91tb0p74_500.gif")
@@ -431,7 +417,7 @@ async def verse(target: discord.Member):
 @client.command(name='triggers',
                 brief= " = shows you what Gavin responds to in chats and dms.")
 async def triggers():
-    await client.say("```Chat Triggers \n Gavin will resonds to the following keywords in chat: \n - Connor \n - convin \n - Gavin \n - bromance \n - fuck off gavin \n - oh fuck off gavin \n - fuck you gavin \n - oh fuck you gavin \n - fuck yourself gavin \n - fuck me gavin \n - I love you gavin \n as well as a few other, fun ones ;)```")
+    await client.say("```Chat Triggers \n Gavin will resonds to the following keywords in chat: \n - Connor \n - convin \n - Gavin \n - bromance \n - fuck off gavin \n - fuck you gavin \n - fuck yourself gavin \n - fuck me gavin \n - I love you gavin \n - greeting him \n - telling him to shut up \n as well as a few other, fun ones ;)```")
 
 
         
