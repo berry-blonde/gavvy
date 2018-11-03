@@ -206,7 +206,7 @@ async def on_message(message):
     elif 'rooty tooty point and shooty' in message.content:
         await client.send_message(message.channel, "Thank you for using the correct term, asshat.")
     elif 'vore' in message.content:
-        if message.author.id == "467913111551082518":
+        if message.author.id == "508110104726339633":
             return
         else:
             await client.send_message(message.channel, "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE")
@@ -220,7 +220,7 @@ async def on_message(message):
         else:
             await client.send_message(message.channel, "OOF")
     elif ' oof' in message.content:
-        if message.author.id == "467913111551082518":
+        if message.author.id == "508110104726339633":
             return
         else:
             await client.send_message(message.channel, "OOF")
