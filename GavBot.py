@@ -206,7 +206,10 @@ async def on_message(message):
     elif 'rooty tooty point and shooty' in message.content:
         await client.send_message(message.channel, "Thank you for using the correct term, asshat.")
     elif 'vore' in message.content:
-        await client.send_message(message.channel, "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE")
+        if message.author.id == "467913111551082518":
+            return
+        else:
+            await client.send_message(message.channel, "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE")
     elif 'dick' in message.content:
         await client.send_message(message.channel, "Mhmmm dick. Slurp.")
     elif 'bye' in message.content:
@@ -217,12 +220,12 @@ async def on_message(message):
         else:
             await client.send_message(message.channel, "OOF")
     elif ' oof' in message.content:
-        await client.send_message(message.channel, "OOF")
-    elif 'hewwo' in message.content:
         if message.author.id == "467913111551082518":
             return
         else:
-            await client.send_message(message.channel, "hewwo owo")
+            await client.send_message(message.channel, "OOF")
+    elif 'hewwo' in message.content:
+        await client.send_message(message.channel, "hewwo owo")
     elif message.content.startswith('good morning'):
         if message.author.id == "467913111551082518":
             return
