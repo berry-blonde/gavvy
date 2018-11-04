@@ -47,6 +47,16 @@ async def ded():
     embed = discord.Embed()
     embed.set_image(url="https://cdn.discordapp.com/attachments/506242430375428107/507585948947578881/Screen_Shot_2018-11-01_at_9.04.04_AM.png")
     await client.say(embed=embed)
+    
+
+@client.command(name='love',
+                brief= " = show your love and appreciation with a pink Gavin")
+
+async def love():
+    embed = discord.Embed()
+    embed.set_image(url="https://media.discordapp.net/attachments/475918776857133056/508744255875842061/Screen_Shot_2018-11-04_at_12.44.09_PM.png")
+    await client.say(embed=embed)
+
 
 @client.command(name='horny',
                 brief= " = What do you expect from that one, huh?")
