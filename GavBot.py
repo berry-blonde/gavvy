@@ -28,6 +28,12 @@ async def cat(context):
 
     await client.say(random.choice(possible_responses))
 
+@client.command(name='hug')
+
+async def hug()
+    await client.say("Get the fuck off of me, dipshit!")
+
+
 
 async def hello(context):
     
