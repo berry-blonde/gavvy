@@ -30,7 +30,7 @@ async def cat(context):
 
 @client.command(name='hug')
 
-async def hug()
+async def hug():
     await client.say("Get the fuck off of me, dipshit!")
 
 
