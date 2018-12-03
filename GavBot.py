@@ -378,7 +378,7 @@ async def on_message(message):
 ###### other stuff ######
 
         elif "gavin no" in message.content:
-            if annoyance <5:
+            if annoyance <81:
                possible_responses = [
                   "Gavin YES"
                   ]
@@ -482,8 +482,12 @@ async def on_message(message):
                     "JUST GIVE ME THE FUCKING COFFEE. Sorry- I'm just. Ugh."
                     ]
                  embed.set_thumbnail(url=mad2)
+            
            else:
               return
+            
+        elif " " in message.content:
+            return
                  
         else:
             if annoyance <36:
