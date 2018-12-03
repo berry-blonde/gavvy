@@ -279,9 +279,6 @@ async def on_message(message):
         
         
     elif message.content.startswith("connor"):
-        annoy(1)
-        await client.send_typing(message.channel)
-        time.sleep(1)
         embed = discord.Embed(**em)
 
         if "how many stab wound" in message.content:
@@ -314,10 +311,14 @@ async def on_message(message):
                 "SHUT THE FUCK UP CONNOR"
                 ]
             embed.set_thumbnail(url=mad2)
+        elif "connor " in message.content:
+            return
 
 
 
-            
+        annoy(1)
+        await client.send_typing(message.channel)
+        time.sleep(1)   
         embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
         await client.send_message(message.channel, embed=embed)
 
@@ -328,8 +329,7 @@ async def on_message(message):
 
     elif message.content.startswith ("gavin"):
         
-        await client.send_typing(message.channel)
-        time.sleep(1)
+
         embed = discord.Embed(**em)
 
         if "what do you think about connor" in message.content:
@@ -486,7 +486,7 @@ async def on_message(message):
            else:
               return
             
-        elif " " in message.content:
+        elif "gavin " in message.content:
             return
                  
         else:
@@ -512,9 +512,11 @@ async def on_message(message):
                     "I don't fucking care what you want, fuck off",
                     "What the *fuck* is it, asshole?"
                     ]
-                embed.set_thumbnail(url=mad2) 
+                embed.set_thumbnail(url=mad2)
+                
             
-
+        await client.send_typing(message.channel)
+        time.sleep(1)
         embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
         await client.send_message(message.channel, embed=embed)
 
