@@ -286,6 +286,9 @@ async def on_message(message):
                 "***28 sTaB wOuNdS***"
                 ]
             embed.set_thumbnail(url=smug)
+        elif "connor " in message.content:
+            return
+        
         elif annoyance <=40:
             possible_responses = [
                 "we talking about the tin can?",
@@ -311,8 +314,7 @@ async def on_message(message):
                 "SHUT THE FUCK UP CONNOR"
                 ]
             embed.set_thumbnail(url=mad2)
-        elif "connor " in message.content:
-            return
+
 
 
 
