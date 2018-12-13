@@ -1153,7 +1153,7 @@ async def on_message(message):
 async def inc():
     with open("servers.json", "r") as f:
         servers = json.load(f)
-    await add_annoyance(servers, server, 20)
+    servers[server.id]["annoyance"] = servers[server.id]["annoyance"] + 20
     with open("servers.json", "w") as f:
         json.dump(servers, f)
     await client.say(servers[server.id]["annoyance"])
@@ -1163,21 +1163,9 @@ async def inc():
 async def dec():
     with open("servers.json", "r") as f:
         servers = json.load(f)
-    await add_annoyance(servers, server, -20)
+    servers[server.id]["annoyance"] = servers[server.id]["annoyance"] - 20
     with open("servers.json", "w") as f:
         json.dump(servers, f)
-    await client.say(servers[server.id]["annoyance"])
-
-
-@client.command(name='reset')
-
-async def rest():
-
-    await client.say(servers[server.id]["annoyance"])
-
-@client.command(name='sethigh')
-
-async def sethigh():
     await client.say(servers[server.id]["annoyance"])
 
 
