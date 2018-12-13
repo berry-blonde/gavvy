@@ -104,6 +104,29 @@ lewd = "https://cdn.discordapp.com/attachments/476197973861203968/51892459093688
 
 ###### commands ######
 
+
+@client.command(name="reset", pass_context=True)
+@has_permissions(administrator=True)
+async def reset(context):
+    server = context.message.author.server
+    with open("servers.json", "r") as f:
+        servers = json.load(f)
+    await reset_annoyance(servers, server, annoyance)
+    with open("servers.json", "w") as f:
+        json.dump(servers, f)
+    embed = discord.Embed(**em)
+    embed.set_thumbnail(url=winkwonk)
+    embed.add_field(name='\u200b', value= "Annoyance has been reset to 20%.", inline=True)
+
+@reset.error
+async def reset_error(error, context):
+    if isinstance(error, CheckFailure):
+        embed = discord.Embed(**em)
+        embed.set_thumbnail(url=smug)
+        embed.add_field(name='\u200b', value= "Sorry, fuckface, looks like you don't have the permission to use that.", inline=True)
+        await client.send_message(context.message.channel, embed=embed)
+
+        
 ###### help commands ######
 
 @client.command(pass_context=True)
