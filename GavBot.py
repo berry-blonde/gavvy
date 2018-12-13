@@ -11,6 +11,8 @@ import queue
 import json
 import os
 import asyncio
+from discord.ext.commands import has_permissions, CheckFailure
+
 
 BOT_PREFIX = 'g!'
 client = Bot(command_prefix=BOT_PREFIX)
