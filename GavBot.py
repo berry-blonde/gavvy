@@ -23,7 +23,7 @@ print("I'm in")
 @client.event
 async def on_ready():
 
-    await client.change_presence(game=discord.Game(name="working on some shit"))
+    await client.change_presence(game=discord.Game(name="got a support server now~"))
 
 
 @client.event
