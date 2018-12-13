@@ -15,7 +15,6 @@ import asyncio
 BOT_PREFIX = 'g!'
 client = Bot(command_prefix=BOT_PREFIX)
 client.remove_command("help")
-os.chdir(r'C:\Users\evely\Documents\GavBot')
 
 print("I'm in")
 
