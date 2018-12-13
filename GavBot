@@ -1157,4 +1157,4 @@ async def sethigh():
     await client.say(servers[server.id]["annoyance"])
 
 
-client.run(TOKEN)
+client.run(str(os.environ.get("TOKEN")))
