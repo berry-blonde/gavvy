@@ -1,3 +1,8 @@
 discord.py==0.16.12
 json
 asyncio
+time
+random
+randint
+discord.ext
+discord.ext.commands
