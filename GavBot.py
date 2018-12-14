@@ -164,6 +164,7 @@ async def commands(context):
     embed.add_field(name='nsfw', value= "That's NSFW!", inline=True)
     embed.add_field(name='roast', value= "Hah, buuurn.", inline=True)
     embed.add_field(name='verse', value= ":eyes:", inline=True)
+    embed.add_field(name='nut', value= "You'll nut. Trust me.", inline=True)
 
     await client.send_message(context.message.author, embed=embed)
 
@@ -377,7 +378,7 @@ async def verse(target: discord.Member):
     embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
     await client.say(embed=embed)
     
- @client.command(name="nut")   
+@client.command(name="nut")   
 async def nut():
     embed = discord.Embed(**em)
     embed.set_image(url = "https://cdn.discordapp.com/attachments/506607750630080512/523269447910293515/cheers.png")
