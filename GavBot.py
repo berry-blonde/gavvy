@@ -202,6 +202,7 @@ async def annoyance(context):
 
 ###### regular commands ######
 
+
 @client.command(pass_context=True)
 async def start(context):
     server = context.message.author.server
@@ -254,7 +255,6 @@ async def ded():
     embed = discord.Embed(**em)
     embed.set_image(url = "https://cdn.discordapp.com/attachments/506242430375428107/507585948947578881/Screen_Shot_2018-11-01_at_9.04.04_AM.png")
     await client.say(embed=embed)
-
 
 @client.command(name="love")
 
@@ -376,6 +376,13 @@ async def verse(target: discord.Member):
 
     embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
     await client.say(embed=embed)
+    
+ @client.command(name="nut")   
+async def nut():
+    embed = discord.Embed(**em)
+    embed.set_image(url = "https://cdn.discordapp.com/attachments/506607750630080512/523269447910293515/cheers.png")
+    await client.say(embed=embed)
+    
 
 ##@client.command(name="")
 ##
