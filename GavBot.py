@@ -791,7 +791,7 @@ async def on_message(message):
                  ]
               embed.set_thumbnail(url=mad2)
 
-        elif message.content.startswith(("right", "am i right", "do you agree")):
+        elif message.content.startswith(("right gavin", "am i right gavin", "do you agree gavin")):
            possible_responses = [
               "Hell yeah!",
               "Fuck yeah!",
@@ -802,7 +802,7 @@ async def on_message(message):
               ]
            embed.set_thumbnail(url=default)
 
-        elif message.content.startswith(("tell me about your cats", "can you tell me about your cats",)):
+       elif message.content.startswith(("tell me about your cats", "can you tell me about your cats", "gavin tell me about your cats", "gavin can you tell me about your cats",)):
            if servers[server.id]["annoyance"] <51:
               with open("servers.json", "r") as f:
                   servers = json.load(f)
