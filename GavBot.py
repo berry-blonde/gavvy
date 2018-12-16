@@ -497,8 +497,7 @@ async def on_message(message):
                with open("servers.json", "r") as f:
                    servers = json.load(f)
 
-               await update_data(servers,message.server)
-               await add_servers[server.id]["annoyance"](servers,message.server,1)
+               await add_annoyance(servers, server, 1)
 
                with open("servers.json", "w") as f:
                    json.dump(servers, f)
