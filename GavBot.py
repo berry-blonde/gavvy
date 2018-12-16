@@ -802,7 +802,7 @@ async def on_message(message):
               ]
            embed.set_thumbnail(url=default)
 
-       elif message.content.startswith(("tell me about your cats", "can you tell me about your cats", "gavin tell me about your cats", "gavin can you tell me about your cats",)):
+        elif message.content.startswith(("tell me about your cats", "can you tell me about your cats", "gavin tell me about your cats", "gavin can you tell me about your cats",)):
            if servers[server.id]["annoyance"] <51:
               with open("servers.json", "r") as f:
                   servers = json.load(f)
