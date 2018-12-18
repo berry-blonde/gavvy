@@ -993,12 +993,14 @@ async def on_message(message):
 
     elif message.content.startswith("owo"):
         if servers[server.id]["annoyance"] <66:
+            embed.set_thumbnail(url=weeb)
             possible_responses = [
             "uwu"
             ]
 
     elif message.content.startswith("uwu"):
         if servers[server.id]["annoyance"] <66:
+            embed.set_thumbnail(url=weeb)
             possible_responses = [
             "***OwO***"
             ]
@@ -1012,27 +1014,31 @@ async def on_message(message):
            await add_annoyance(servers, server, 10)
            with open("servers.json", "w") as f:
                json.dump(servers, f)
-        possible_responses = [
-        "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
-        ]
+            possible_responses = [
+                "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
+                ]
 
     elif message.content == "dick":
+        embed.set_thumbnail(url=lewd)
         if servers[server.id]["annoyance"] <66:
             possible_responses = [
             "Mhh dick. Slurp."
             ]
 
     elif message.content == "hewwo gavin":
+        embed.set_thumbnail(url=weeb)
         possible_responses = [
         "I'M A BAD BITCH YOU CAN'T STOP ME"
         ]
 
     elif message.content.startswith(("gavin stop", "stop gavin")):
+        embed.set_thumbnail(url=smug)
         possible_responses = [
         "I'M A BAD BITCH YOU CAN'T STOP ME"
         ]
 
     elif message.content == "gay":
+        embed.set_thumbnail(url=default)
         possible_responses = [
         "MOVE I'M GAY"
         ]
