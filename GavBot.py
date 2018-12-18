@@ -251,14 +251,12 @@ async def pingtime(context):
 
 @client.command(name="ded",
                 pass_context=True)
-
 async def ded():
     embed = discord.Embed(**em)
     embed.set_image(url = "https://cdn.discordapp.com/attachments/506242430375428107/507585948947578881/Screen_Shot_2018-11-01_at_9.04.04_AM.png")
     await client.say(embed=embed)
 
 @client.command(name="love")
-
 async def love():
     embed = discord.Embed(**em)
     embed.set_image(url = "https://media.discordapp.net/attachments/475918776857133056/508744255875842061/Screen_Shot_2018-11-04_at_12.44.09_PM.png")
@@ -266,7 +264,6 @@ async def love():
 
 
 @client.command(name="horny")
-
 async def horny():
     embed = discord.Embed(**em)
     embed.set_image(url = "https://media.discordapp.net/attachments/476189549366738944/490559000631443466/DbozB11V0AMVmgN.jpg")
@@ -274,7 +271,6 @@ async def horny():
 
 
 @client.command(name="wink")
-
 async def wink():
     embed = discord.Embed(**em)
     embed.set_image(url="https://78.media.tumblr.com/f5d09004bbc90e513437b85ab1624b47/tumblr_inline_p9wi304wm91tb0p74_500.gif")
@@ -282,7 +278,6 @@ async def wink():
 
 
 @client.command(name="kinkshame", pass_context=True)
-
 async def kinkshame(context, target: discord.Member):
     embed = discord.Embed(**em)
     embed.add_field(name='\u200b', value= "You've been kinkshamed by {}, you filthy little bastard {}".format(context.message.author.mention, target.mention), inline=False)
@@ -292,7 +287,6 @@ async def kinkshame(context, target: discord.Member):
 
 
 @client.command(name="nsfw")
-
 async def nsfw():
     embed = discord.Embed(**em)
     embed.set_image(url="https://media.discordapp.net/attachments/475918776857133056/477203747509108756/1533844628299.png?width=623&height=670")
@@ -344,7 +338,6 @@ async def roast(context, target: discord.Member):
 
 
 @client.command(name="verse")
-
 async def verse(target: discord.Member):
     embed = discord.Embed(**em)
     if target.id == "476176194522316801":
@@ -1029,7 +1022,6 @@ async def on_message(message):
             "Mhh dick. Slurp."
             ]
 
-
     elif message.content == "hewwo gavin":
         possible_responses = [
         "I'M A BAD BITCH YOU CAN'T STOP ME"
@@ -1040,14 +1032,13 @@ async def on_message(message):
         "I'M A BAD BITCH YOU CAN'T STOP ME"
         ]
 
-
-
     elif message.content == "gay":
         possible_responses = [
         "MOVE I'M GAY"
         ]
 
     else:
+        await client.process_commands(message)
         return
 
     await client.send_typing(message.channel)
@@ -1055,7 +1046,6 @@ async def on_message(message):
     embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
     await client.send_message(message.channel, embed=embed)
     await client.process_commands(message)
-
 
 
 
