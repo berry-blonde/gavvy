@@ -128,7 +128,7 @@ async def reset_error(error, context):
         embed.add_field(name='\u200b', value= "Sorry, fuckface, looks like you don't have the permission to use that.", inline=True)
         await client.send_message(context.message.channel, embed=embed)
 
-        
+
 ###### help commands ######
 
 @client.command(pass_context=True)
@@ -314,6 +314,9 @@ async def roast(context, target: discord.Member):
             "Your eyes are so confusing, I keep getting fucking lost. Wait, no, that, uh, that's not what i meant -",
             "Has your smile caused a car accident yet? I bet people keep getting distracted. BECAUSE IT'S SO UGLY OF COURSE PHCK -",
             "Uh... shit, phck off why should I do what you say?! You're not the boss of me!",
+            "If i wanted a bitch i would've gotten a dog, guess i'll have to settle for you....wAIT SHIT!",
+            "The smartest thing that's ever come out of your mouth has been my dick...not that i'd ever have sex with you of course...",
+            "Take a deep breath and then hold it for about twenty minutes....dammit i just remembered you don't need to breathe"
         ]
         embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
         embed.set_thumbnail(url=emb3)
@@ -377,13 +380,13 @@ async def verse(target: discord.Member):
 
     embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
     await client.say(embed=embed)
-    
-@client.command(name="nut")   
+
+@client.command(name="nut")
 async def nut():
     embed = discord.Embed(**em)
     embed.set_image(url = "https://cdn.discordapp.com/attachments/506607750630080512/523269447910293515/cheers.png")
     await client.say(embed=embed)
-    
+
 
 ##@client.command(name="")
 ##
@@ -401,6 +404,7 @@ async def nut():
 async def on_message(message):
     server = message.server
     message.content = message.content.lower()
+    embed = discord.Embed(**em)
     with open("servers.json", "r") as f:
         servers = json.load(f)
     await update_data(servers, server)
@@ -410,18 +414,15 @@ async def on_message(message):
         return
 
 
-    elif message.content.startswith("connor"):
-        embed = discord.Embed(**em)
+    elif "connor how many stab wound" in message.content:
+        possible_responses = [
+            "***28 sTaB wOuNdS***"
+            ]
+        embed.set_thumbnail(url=smug)
 
-        if "how many stab wound" in message.content:
-            possible_responses = [
-                "***28 sTaB wOuNdS***"
-                ]
-            embed.set_thumbnail(url=smug)
-        elif "connor " in message.content:
-            return
+    elif message.content == "connor":
 
-        elif servers[server.id]["annoyance"] <=40:
+        if servers[server.id]["annoyance"] <= 40:
             possible_responses = [
                 "we talking about the tin can?",
                 "Why are we talking about the Tin Can?",
@@ -456,404 +457,379 @@ async def on_message(message):
             embed.set_thumbnail(url=mad2)
 
 
-
-
         with open("servers.json", "r") as f:
             servers = json.load(f)
         await add_annoyance(servers, server, 1)
         with open("servers.json", "w") as f:
             json.dump(servers, f)
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
-        await client.send_message(message.channel, embed=embed)
-
-
-###### gavin in the beginning ######
 
 ###### opinion on Connor ######
 
-    elif message.content.startswith ("gavin"):
+    elif message.content == "gavin what do you think about connor?":
+        if servers[server.id]["annoyance"] <5:
+           possible_responses = [
+              "He's... I have to admit, he's pretty. And nice. And... god i have it bad, huh?",
+              "I might act like I hate him all the time but... He's a good person.",
+              "I don't understand how he can be so nice, after all i've done. He's great, you know?"
+              ]
+           embed.set_thumbnail(url=smitten)
+        elif 4< servers[server.id]["annoyance"] <=10:
+            possible_responses = [
+                "He's... he's not so bad I guess.",
+                "He... I've met worse.",
+                "Connor, huh? He's... something else. Something special."
+                ]
+            embed.set_thumbnail(url=happy)
+        elif 10< servers[server.id]["annoyance"] <31:
+           with open("servers.json", "r") as f:
+               servers = json.load(f)
 
+           await add_annoyance(servers, server, 1)
 
-        embed = discord.Embed(**em)
-
-        if "what do you think about connor" in message.content:
-            if servers[server.id]["annoyance"] <5:
-               possible_responses = [
-                  "He's... I have to admit, he's pretty. And nice. And... god i have it bad, huh?",
-                  "I might act like I hate him all the time but... He's a good person.",
-                  "I don't understand how he can be so nice, after all i've done. He's great, you know?"
-                  ]
-               embed.set_thumbnail(url=smitten)
-            elif 4< servers[server.id]["annoyance"] <=10:
-                possible_responses = [
-                    "He's... he's not so bad I guess.",
-                    "He... I've met worse.",
-                    "Connor, huh? He's... something else. Something special."
+           with open("servers.json", "w") as f:
+               json.dump(servers, f)
+           possible_responses = [
+                    "he's an android prick, what the hell do you want to hear?",
+                    "He's a little bitch and he should've been back with my coffee by now.",
+                    "Anderson's plastic pet, huh? Dipshit should just get lost."
                     ]
-                embed.set_thumbnail(url=happy)
-            elif 10< servers[server.id]["annoyance"] <31:
-               with open("servers.json", "r") as f:
-                   servers = json.load(f)
-
-               await add_annoyance(servers, server, 1)
-
-               with open("servers.json", "w") as f:
-                   json.dump(servers, f)
-               possible_responses = [
-                        "he's an android prick, what the hell do you want to hear?",
-                        "He's a little bitch and he should've been back with my coffee by now.",
-                        "Anderson's plastic pet, huh? Dipshit should just get lost."
-                        ]
-               embed.set_thumbnail(url=eyeroll)
-            elif 30< servers[server.id]["annoyance"] <51:
-                with open("servers.json", "r") as f:
-                    servers = json.load(f)
-                await add_annoyance(servers, server, 1)
-                with open("servers.json", "w") as f:
-                    json.dump(servers, f)
-                possible_responses = [
-                    "he's- what the fuck do you want from me?! I- I hate him, that's what I think!",
-                    "The fuck do you want from me? I hate him."
-                    ]
-                embed.set_thumbnail(url=emb1)
-            elif 50< servers[server.id]["annoyance"] <71:
-                with open("servers.json", "r") as f:
-                    servers = json.load(f)
-                await add_annoyance(servers, server, 3)
-                with open("servers.json", "w") as f:
-                    json.dump(servers, f)
-                possible_responses = [
-                    "Shut the hell up, I think he should suck my dick! W-Wait I diDN'T MEAN THAT LITERALLY!"
-                    ]
-                embed.set_thumbnail(url=emb2)
-            elif servers[server.id]["annoyance"] >70:
-                with open("servers.json", "r") as f:
-                    servers = json.load(f)
-                await add_annoyance(servers, server, 3)
-                with open("servers.json", "w") as f:
-                    json.dump(servers, f)
-                possible_responses = [
-                    "I THINK HE'S A PRICK, I HATE HIM! I HATE HIS SMILE, AND HIS LAUGH, A-AND THE WAY HE...he always runs a hand through his...pretty soft hair...I'll fucking kill you."
-                    ]
-                embed.set_thumbnail(url=emb3)
+           embed.set_thumbnail(url=eyeroll)
+        elif 30< servers[server.id]["annoyance"] <51:
+            with open("servers.json", "r") as f:
+                servers = json.load(f)
+            await add_annoyance(servers, server, 1)
+            with open("servers.json", "w") as f:
+                json.dump(servers, f)
+            possible_responses = [
+                "he's- what the fuck do you want from me?! I- I hate him, that's what I think!",
+                "The fuck do you want from me? I hate him."
+                ]
+            embed.set_thumbnail(url=emb1)
+        elif 50< servers[server.id]["annoyance"] <71:
+            with open("servers.json", "r") as f:
+                servers = json.load(f)
+            await add_annoyance(servers, server, 3)
+            with open("servers.json", "w") as f:
+                json.dump(servers, f)
+            possible_responses = [
+                "Shut the hell up, I think he should suck my dick! W-Wait I diDN'T MEAN THAT LITERALLY!"
+                ]
+            embed.set_thumbnail(url=emb2)
+        elif servers[server.id]["annoyance"] >70:
+            with open("servers.json", "r") as f:
+                servers = json.load(f)
+            await add_annoyance(servers, server, 3)
+            with open("servers.json", "w") as f:
+                json.dump(servers, f)
+            possible_responses = [
+                "I THINK HE'S A PRICK, I HATE HIM! I HATE HIS SMILE, AND HIS LAUGH, A-AND THE WAY HE...he always runs a hand through his...pretty soft hair...I'll fucking kill you."
+                ]
+            embed.set_thumbnail(url=emb3)
 
 ###### other stuff ######
 
-        elif "gavin no" in message.content:
-            if servers[server.id]["annoyance"] <81:
-               possible_responses = [
-                  "Gavin YES"
-                  ]
-               embed.set_thumbnail(url=smug)
+    elif message.content == "gavin no":
+        if servers[server.id]["annoyance"] <81:
+           possible_responses = [
+              "Gavin YES"
+              ]
+           embed.set_thumbnail(url=smug)
 
 ###### how are you? ######
 
-        elif "how are you" in message.content:
-            if servers[server.id]["annoyance"] <=10:
-                possible_responses = [
-                    "I- I'm actually pretty good right now. Calm."
-                    ]
-                embed.set_thumbnail(url=happy)
+    elif message.content.startswith(("gavin how are you", "how are you gavin")):
+        if servers[server.id]["annoyance"] <=10:
+            possible_responses = [
+                "I- I'm actually pretty good right now."
+                ]
+            embed.set_thumbnail(url=happy)
 
-            elif 10< servers[server.id]["annoyance"] <41:
-                possible_responses = [
-                        "Eh, I'm pretty okay right now."
-                        ]
-                embed.set_thumbnail(url=default)
-            elif 40< servers[server.id]["annoyance"] <61:
-                possible_responses = [
-                    "Could be worse, but I seriously need some fucking coffee right now."
+        elif 10< servers[server.id]["annoyance"] <41:
+            possible_responses = [
+                    "Eh, I'm pretty okay right now."
                     ]
-                embed.set_thumbnail(url=eyeroll)
-            elif 60< servers[server.id]["annoyance"] <86:
-                with open("servers.json", "r") as f:
-                    servers = json.load(f)
-                await add_annoyance(servers, server, 3)
-                with open("servers.json", "w") as f:
-                    json.dump(servers, f)
-                possible_responses = [
-                    "You know what? I- Don't even get me fucking started."
-                    ]
-                embed.set_thumbnail(url=disgusting)
-            elif servers[server.id]["annoyance"] >85:
-                with open("servers.json", "r") as f:
-                    servers = json.load(f)
-                await add_annoyance(servers, server, 3)
-                with open("servers.json", "w") as f:
-                    json.dump(servers, f)
-                possible_responses = [
-                    "Oh fuck *off*, fuck this shit, I'm out."
-                    ]
-                embed.set_thumbnail(url=mad2)
+            embed.set_thumbnail(url=default)
+        elif 40< servers[server.id]["annoyance"] <61:
+            possible_responses = [
+                "Could be worse, but I seriously need some fucking coffee right now."
+                ]
+            embed.set_thumbnail(url=eyeroll)
+        elif 60< servers[server.id]["annoyance"] <86:
+            with open("servers.json", "r") as f:
+                servers = json.load(f)
+            await add_annoyance(servers, server, 3)
+            with open("servers.json", "w") as f:
+                json.dump(servers, f)
+            possible_responses = [
+                "You know what? I- Don't even get me fucking started."
+                ]
+            embed.set_thumbnail(url=disgusting)
+        elif servers[server.id]["annoyance"] >85:
+            with open("servers.json", "r") as f:
+                servers = json.load(f)
+            await add_annoyance(servers, server, 3)
+            with open("servers.json", "w") as f:
+                json.dump(servers, f)
+            possible_responses = [
+                "Oh fuck *off*, fuck this shit, I'm out."
+                ]
+            embed.set_thumbnail(url=mad2)
 
 ###### Do you like? ######
 
-        elif "do you like" in message.content:
-           if "cats" in message.content:
-              if servers[server.id]["annoyance"] < 56:
-                 if servers[server.id]["annoyance"] > 10:
-                    with open("servers.json", "r") as f:
-                        servers = json.load(f)
-                    await remove_annoyance(servers, server, 1)
-                    with open("servers.json", "w") as f:
-                        json.dump(servers, f)
-                 possible_responses = [
-                    "Yeah, I even got two. Gilbert and Fucknugget.",
-                    "Sure, they're great.",
-                    "Little Gremlins. I love them."
-                    ]
-                 embed.set_thumbnail(url=default)
-              elif servers[server.id]["annoyance"] > 55:
-                 possible_responses = [
-                    "What's it to you?",
-                    "Sure. Now fuck off.",
-                    "Yeah, and?"
-                    ]
-                 embed.set_thumbnail(url=eyeroll)
+    elif message.content.startswith("gavin do you like cats"):
+          if servers[server.id]["annoyance"] < 56:
+             if servers[server.id]["annoyance"] > 10:
+                with open("servers.json", "r") as f:
+                    servers = json.load(f)
+                await remove_annoyance(servers, server, 1)
+                with open("servers.json", "w") as f:
+                    json.dump(servers, f)
+             possible_responses = [
+                "Yeah, I even got two. Gilbert and Fucknugget.",
+                "Sure, they're great.",
+                "Little Gremlins. I love them."
+                ]
+             embed.set_thumbnail(url=default)
+          elif servers[server.id]["annoyance"] > 55:
+             possible_responses = [
+                "What's it to you?",
+                "Sure. Now fuck off.",
+                "Yeah, and?"
+                ]
+             embed.set_thumbnail(url=eyeroll)
 
-           elif "dogs" in message.content:
-              if servers[server.id]["annoyance"] < 56:
-                 possible_responses = [
-                    "Eh, I'm more of a cat person.",
-                    "Dogs? Pff, have you seen Connor? Follows Anderson around like a goddamn poodle.",
-                    "Hm, yeah, why not. Kinda remind me of Con- No one. I mean no one."
-                    ]
-                 embed.set_thumbnail(url=default)
-              elif servers[server.id]["annoyance"] > 55:
-                 possible_responses = [
-                    "Cats are way better, now fuck off",
-                    "Why are you even asking?",
-                    "Dogs like Anderson's plastic pet? Ye- No! I mean not at all. Ugh."
-                    ]
-                 embed.set_thumbnail(url=eyeroll)
+    elif message.content.startswith("gavin do you like dogs"):
+      if servers[server.id]["annoyance"] < 56:
+         possible_responses = [
+            "Eh, I'm more of a cat person.",
+            "Dogs? Pff, have you seen Connor? Follows Anderson around like a goddamn poodle.",
+            "Hm, yeah, why not. Kinda remind me of Con- No one. I mean no one."
+            ]
+         embed.set_thumbnail(url=default)
+      elif servers[server.id]["annoyance"] > 55:
+         possible_responses = [
+            "Cats are way better, now fuck off",
+            "Why are you even asking?",
+            "Dogs like Anderson's plastic pet? Ye- No! I mean not at all. Ugh."
+            ]
+         embed.set_thumbnail(url=eyeroll)
 
 ###### would you like? ######
 
 
-        elif "would you like" in message.content:
-           if "coffee" in message.content:
-              if servers[server.id]["annoyance"] < 36:
-                 with open("servers.json", "r") as f:
-                     servers = json.load(f)
-                 await remove_annoyance(servers, server, 2)
-                 with open("servers.json", "w") as f:
-                     json.dump(servers, f)
-                 possible_responses = [
-                    "Yeah, thanks, buddy.",
-                    "Why are you even asking? Of course.",
-                    "Shit, yeah! Thank you."
+    elif message.content.startswith(("gavin would you like a coffe", "gavin would you like some coffe")):
+          if servers[server.id]["annoyance"] < 36:
+             with open("servers.json", "r") as f:
+                 servers = json.load(f)
+             await remove_annoyance(servers, server, 2)
+             with open("servers.json", "w") as f:
+                 json.dump(servers, f)
+             possible_responses = [
+                "Yeah, thanks, buddy.",
+                "Why are you even asking? Of course.",
+                "Shit, yeah! Thank you."
+                ]
+             embed.set_thumbnail(url=winkwonk)
+          elif 35 < servers[server.id]["annoyance"] <76:
+             with open("servers.json", "r") as f:
+                 servers = json.load(f)
+             await remove_annoyance(servers, server, 3)
+             with open("servers.json", "w") as f:
+                 json.dump(servers, f)
+             possible_responses = [
+                "Fuck, yeah, thank you, coffee saves lives.",
+                "Yeah, I really need a fucking cup right now.",
+                "Yeah, hurry up and hand it over, dipshit."
+                ]
+             embed.set_thumbnail(url=mad1)
+          elif servers[server.id]["annoyance"] >75:
+             with open("servers.json", "r") as f:
+                 servers = json.load(f)
+             await remove_annoyance(servers, server, 2)
+             with open("servers.json", "w") as f:
+                 json.dump(servers, f)
+             possible_responses = [
+                "Yeah, please hurry the fuck up with it, I really need one right now.",
+                "Fuck, get a move on, I really need a cup right now.",
+                "JUST GIVE ME THE FUCKING COFFEE. Sorry- I'm just. Ugh."
+                ]
+             embed.set_thumbnail(url=mad2)
+
+    elif message.content == "gavin":
+
+        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+
+        if servers[server.id]["annoyance"] <36:
+            possible_responses = [
+                    "Yo, what's the matter?",
+                    "What do ya want?",
+                    "ayyy, what's up?",
+                    "You called?"
                     ]
-                 embed.set_thumbnail(url=winkwonk)
-              elif 35 < servers[server.id]["annoyance"] <76:
-                 with open("servers.json", "r") as f:
-                     servers = json.load(f)
-                 await remove_annoyance(servers, server, 3)
-                 with open("servers.json", "w") as f:
-                     json.dump(servers, f)
-                 possible_responses = [
-                    "Fuck, yeah, thank you, coffee saves lives.",
-                    "Yeah, I really need a fucking cup right now.",
-                    "Yeah, hurry up and hand it over, dipshit."
-                    ]
-                 embed.set_thumbnail(url=mad1)
-              elif servers[server.id]["annoyance"] >75:
-                 with open("servers.json", "r") as f:
-                     servers = json.load(f)
-                 await remove_annoyance(servers, server, 2)
-                 with open("servers.json", "w") as f:
-                     json.dump(servers, f)
-                 possible_responses = [
-                    "Yeah, please hurry the fuck up with it, I really need one right now.",
-                    "Fuck, get a move on, I really need a cup right now.",
-                    "JUST GIVE ME THE FUCKING COFFEE. Sorry- I'm just. Ugh."
-                    ]
-                 embed.set_thumbnail(url=mad2)
-
-           else:
-              return
-
-        elif "gavin " in message.content:
-            return
-
-        else:
-            if servers[server.id]["annoyance"] <36:
-                possible_responses = [
-                        "Yo, what's the matter?",
-                        "What do ya want?",
-                        "ayyy, what's up?",
-                        "You called?"
-                        ]
-                embed.set_thumbnail(url=default)
-            elif 35< servers[server.id]["annoyance"] <71:
-                possible_responses = [
-                    "What the fuck do you want?",
-                    "What is it now?",
-                    "Yeah, yeah, fuck off",
-                    "Stop talking and bring me a coffee, dipshit."
-                    ]
-                embed.set_thumbnail(url=eyeroll)
-            elif 70< servers[server.id]["annoyance"]:
-                possible_responses = [
-                    "Just fuck off, asshole, don't fucking bother me",
-                    "I don't fucking care what you want, fuck off",
-                    "What the *fuck* is it, asshole?"
-                    ]
-                embed.set_thumbnail(url=mad2)
-
-
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
-        await client.send_message(message.channel, embed=embed)
-
+            embed.set_thumbnail(url=default)
+        elif 35< servers[server.id]["annoyance"] <71:
+            possible_responses = [
+                "What the fuck do you want?",
+                "What is it now?",
+                "Yeah, yeah, fuck off",
+                "Stop talking and bring me a coffee, dipshit."
+                ]
+            embed.set_thumbnail(url=eyeroll)
+        elif 70< servers[server.id]["annoyance"]:
+            possible_responses = [
+                "Just fuck off, asshole, don't fucking bother me",
+                "I don't fucking care what you want, fuck off",
+                "What the *fuck* is it, asshole?"
+                ]
+            embed.set_thumbnail(url=mad2)
 
 
 
 ####### Hello-Block ######
 
-    elif "gavin" in message.content:
+    elif message.content.startswith(("hello gavin", "hi gavin", "hey gavin", "what's up gavin")):
 
-        embed = discord.Embed(**em)
+        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
 
-        if message.content.startswith(("hello", "hi", "hey", "what's up")):
-
-            if servers[server.id]["annoyance"] <36:
-                possible_responses = [
-                        "Yo, what's the matter?",
-                        "What do ya want?",
-                        "ayyy, what's up?"
-                        ]
-                embed.set_thumbnail(url=default)
-            elif 35< servers[server.id]["annoyance"] <71:
-                possible_responses = [
-                    "What the fuck do you want?",
-                    "What is it now?",
-                    "Yeah, yeah, fuck off",
-                    "Stop talking and bring me a coffee, dipshit."
+        if servers[server.id]["annoyance"] <36:
+            possible_responses = [
+                    "Yo, what's the matter?",
+                    "What do ya want?",
+                    "ayyy, what's up?"
                     ]
-                embed.set_thumbnail(url=eyeroll)
-            elif 70< servers[server.id]["annoyance"]:
-                possible_responses = [
-                    "Just fuck off, asshole, don't fucking bother me",
-                    "I don't fucking care what you want, fuck off",
-                    "What the *fuck* is it, asshole?"
-                    ]
-                embed.set_thumbnail(url=mad2)
+            embed.set_thumbnail(url=default)
+        elif 35< servers[server.id]["annoyance"] <71:
+            possible_responses = [
+                "What the fuck do you want?",
+                "What is it now?",
+                "Yeah, yeah, fuck off",
+                "Stop talking and bring me a coffee, dipshit."
+                ]
+            embed.set_thumbnail(url=eyeroll)
+        elif 70< servers[server.id]["annoyance"]:
+            possible_responses = [
+                "Just fuck off, asshole, don't fucking bother me",
+                "I don't fucking care what you want, fuck off",
+                "What the *fuck* is it, asshole?"
+                ]
+            embed.set_thumbnail(url=mad2)
 
 
-###### normal "gavin" in content Block ######
+    elif message.content.startswith("glomps gavin"):
+       if servers[server.id]["annoyance"] < 66:
+          embed.set_thumbnail(url=weeb)
+          possible_responses = [
+             "***OWO what's this?***"
+             ]
 
-        elif message.content.startswith("glomps"):
-           if servers[server.id]["annoyance"] < 66:
-              embed.set_thumbnail(url=weeb)
-              possible_responses = [
-                 "***OWO what's this?***"
-                 ]
+    elif message.content == "calm your tits gavin":
+       if servers[server.id]["annoyance"] <31:
+          annoyance = annoyance -1
+          possible_responses = [
+          "What are you on about? I'm alright."
+          ]
+          embed.set_thumbnail(url=default)
 
-        elif "calm your tits" in message.content:
-           if servers[server.id]["annoyance"] <31:
-              annoyance = annoyance -1
-              possible_responses = [
-              "What are you on about? I'm alright."
-              ]
-              embed.set_thumbnail(url=default)
+       elif 30< servers[server.id]["annoyance"] <76:
+          annoyance = annoyance -2
+          possible_responses = [
+          "Yeah, yeah whatever, man."
+          ]
+          embed.set_thumbnail(url=eyeroll)
+       elif 75< servers[server.id]["annoyance"]:
+          annoyance = annoyance -1
+          possible_responses = [
+             "OH FUCK OFF, I AM CALM."
+             ]
+          embed.set_thumbnail(url=mad2)
 
-           elif 30< servers[server.id]["annoyance"] <76:
-              annoyance = annoyance -2
-              possible_responses = [
-              "Yeah, yeah whatever, man."
-              ]
-              embed.set_thumbnail(url=eyeroll)
-           elif 75< servers[server.id]["annoyance"]:
-              annoyance = annoyance -1
-              possible_responses = [
-                 "OH FUCK OFF, I AM CALM."
-                 ]
-              embed.set_thumbnail(url=mad2)
+    elif message.content == "hugs gavin":
+       embed.set_thumbnail(url=weeb)
+       if servers[server.id]["annoyance"] <11:
+          possible_responses = [
+             "I... Thank you, this is actually... nice?"
+             ]
+          embed.set_thumbnail(url=happy)
+       elif 10 < servers[server.id]["annoyance"] <61:
+          possible_responses = [
+             "Uh, thanks?"
+             ]
+          embed.set_thumbnail(url=default)
+       elif 60 < servers[server.id]["annoyance"]:
+          possible_responses = [
+             "Oh, get the fuck off of me!"
+             ]
+          embed.set_thumbnail(url=mad2)
 
-        elif message.content.startswith("hugs"):
-           embed.set_thumbnail(url=weeb)
-           if servers[server.id]["annoyance"] <11:
-              possible_responses = [
-                 "I... Thank you, this is actually... nice?"
-                 ]
-              embed.set_thumbnail(url=happy)
-           elif 10 < servers[server.id]["annoyance"] <61:
-              possible_responses = [
-                 "Uh, thanks?"
-                 ]
-              embed.set_thumbnail(url=default)
-           elif 60 < servers[server.id]["annoyance"]:
-              possible_responses = [
-                 "Oh, get the fuck off of me!"
-                 ]
-              embed.set_thumbnail(url=mad2)
+    elif message.content.startswith(("right gavin", "am i right gavin", "do you agree gavin")):
+       possible_responses = [
+          "Hell yeah!",
+          "Fuck yeah!",
+          "Yup!",
+          "Nope, lol.",
+          "Fuck no.",
+          "Nope, absolutely not."
+          ]
+       embed.set_thumbnail(url=default)
 
-        elif message.content.startswith(("right gavin", "am i right gavin", "do you agree gavin")):
-           possible_responses = [
-              "Hell yeah!",
-              "Fuck yeah!",
-              "Yup!",
-              "Nope, lol.",
-              "Fuck no.",
-              "Nope, absolutely not."
-              ]
-           embed.set_thumbnail(url=default)
+    elif message.content.startswith(("tell me about your cats gavin", "can you tell me about your cats gavin", "gavin tell me about your cats", "gavin can you tell me about your cats")):
+       if servers[server.id]["annoyance"] <51:
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await remove_annoyance(servers, server, 2)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Sure! I got two, Gilbert and Fucknugget! Connor doesn't really approve of that name haha.",
+             "Well for starters, Gil is a Maine Coon.",
+             "Gilbert is a stuck up little bitch but I love him.",
+             "Fucknugget is chaotic evil, I swear.",
+             "Absolutely, I love taking about them! I've had Gil for a while now, can't even remember, Fucknugget was a rescue... ",
+             ]
+          embed.set_thumbnail(url=smitten)
+       elif 50 < servers[server.id]["annoyance"] < 81:
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await remove_annoyance(servers, server, 5)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Yeah, Yeah, okay, just what I need right now. I got two, Gilbert and Fucknugget! Connor doesn't really approve of that name haha.",
+             "Ugh, sure, so for starters, Gil is a Maine Coon.",
+             "I guess? Fuck, Gilbert is a stuck up little bitch but I love him.",
+             "Fucking hell, if you want. Fucknugget is chaotic evil, I swear.",
+             "Yeah, that's a good idea. I've had Gil for a while now, can't even remember, Fucknugget was a rescue... ",
+             "Fucking hell, they're great. Mean a lot to me.",
+             "Little pricks, just like their owner. Heh.",
+             ]
+          embed.set_thumbnail(url=happy)
+       elif 80 < servers[server.id]["annoyance"]:
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await remove_annoyance(servers, server, 5)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Fuck, shit, okay, that's always good. I got two, Gilbert and Fucknugget! Connor doesn't really approve of that name haha.",
+             "Ugh, sure, need to calm the fuck down. Well, Gil is a Maine Coon.",
+             "Ugh, alright, some distraction is just what I need. Gilbert is a stuck up little bitch but I love him.",
+             "Fucking hell, if you want, yeah why not. Fucknugget is chaotic evil, I swear.",
+             "Alright, fucking hell. I've had Gil for a while now, can't even remember, Fucknugget was a rescue... ",
+             "Fuck, I love them. I do, they keep me calm like nothing else. Just what I need right now.",
+             "God I love those pricks. They're assholes, just like their owner, huh?",
+             ]
+          embed.set_thumbnail(url=default)
 
-        elif message.content.startswith(("tell me about your cats", "can you tell me about your cats", "gavin tell me about your cats", "gavin can you tell me about your cats",)):
-           if servers[server.id]["annoyance"] <51:
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await remove_annoyance(servers, server, 2)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Sure! I got two, Gilbert and Fucknugget! Connor doesn't really approve of that name haha.",
-                 "Well for starters, Gil is a Maine Coon.",
-                 "Gilbert is a stuck up little bitch but I love him.",
-                 "Fucknugget is chaotic evil, I swear.",
-                 "Absolutely, I love taking about them! I've had Gil for a while now, can't even remember, Fucknugget was a rescue... ",
-                 ]
-              embed.set_thumbnail(url=smitten)
-           elif 50 < servers[server.id]["annoyance"] < 81:
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await remove_annoyance(servers, server, 5)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Yeah, Yeah, okay, just what I need right now. I got two, Gilbert and Fucknugget! Connor doesn't really approve of that name haha.",
-                 "Ugh, sure, so for starters, Gil is a Maine Coon.",
-                 "I guess? Fuck, Gilbert is a stuck up little bitch but I love him.",
-                 "Fucking hell, if you want. Fucknugget is chaotic evil, I swear.",
-                 "Yeah, that's a good idea. I've had Gil for a while now, can't even remember, Fucknugget was a rescue... ",
-                 "Fucking hell, they're great. Mean a lot to me.",
-                 "Little pricks, just like their owner. Heh.",
-                 ]
-              embed.set_thumbnail(url=happy)
-           elif 80 < servers[server.id]["annoyance"]:
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await remove_annoyance(servers, server, 5)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Fuck, shit, okay, that's always good. I got two, Gilbert and Fucknugget! Connor doesn't really approve of that name haha.",
-                 "Ugh, sure, need to calm the fuck down. Well, Gil is a Maine Coon.",
-                 "Ugh, alright, some distraction is just what I need. Gilbert is a stuck up little bitch but I love him.",
-                 "Fucking hell, if you want, yeah why not. Fucknugget is chaotic evil, I swear.",
-                 "Alright, fucking hell. I've had Gil for a while now, can't even remember, Fucknugget was a rescue... ",
-                 "Fuck, I love them. I do, they keep me calm like nothing else. Just what I need right now.",
-                 "God I love those pricks. They're assholes, just like their owner, huh?",
-                 ]
-              embed.set_thumbnail(url=default)
+    elif message.content.startswith(("bye gavin", "goodbye gavin")):
+       possible_responses = [
+         "Bye. Dickhead.",
+         ]
 
 
 ###### a lot of fuck ######
 
-        elif message.content.startswith(("oh fuck you", "fuck you")):
+    elif message.content.startswith(("oh fuck you gavin", "fuck you gavin", "gavin fuck you")):
            with open("servers.json", "r") as f:
                servers = json.load(f)
            await add_annoyance(servers, server, 1)
@@ -880,206 +856,159 @@ async def on_message(message):
                  ]
               embed.set_thumbnail(url=eyeroll)
 
-        elif message.content.startswith(("oh go fuck yourself", "go fuck yourself")):
-           with open("servers.json", "r") as f:
-               servers = json.load(f)
-           await add_annoyance(servers, server, 1)
-           with open("servers.json", "w") as f:
-               json.dump(servers, f)
-           if servers[server.id]["annoyance"] < 66:
-              possible_responses = [
-                 "Don't mind if I do, babe.",
-                 "At work? Kinky.",
-                 ]
-              embed.set_thumbnail(url=smug)
-           elif servers[server.id]["annoyance"] >65 :
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await add_annoyance(servers, server, 1)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Yeah, whatever. Bitch.",
-                 "Wow, so smart. Asshat.",
-                 "Don't got anything better, dipshit?",
-                 ]
-              embed.set_thumbnail(url=eyeroll)
+    elif message.content.startswith(("oh go fuck yourself gavin", "go fuck yourself gavin")):
+       with open("servers.json", "r") as f:
+           servers = json.load(f)
+       await add_annoyance(servers, server, 1)
+       with open("servers.json", "w") as f:
+           json.dump(servers, f)
+       if servers[server.id]["annoyance"] < 66:
+          possible_responses = [
+             "Don't mind if I do, babe.",
+             "At work? Kinky.",
+             ]
+          embed.set_thumbnail(url=smug)
+       elif servers[server.id]["annoyance"] >65 :
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await add_annoyance(servers, server, 1)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Yeah, whatever. Bitch.",
+             "Wow, so smart. Asshat.",
+             "Don't got anything better, dipshit?",
+             ]
+          embed.set_thumbnail(url=eyeroll)
 
-        elif message.content.startswith(("oh fuck off", "fuck off")):
-           with open("servers.json", "r") as f:
-               servers = json.load(f)
-           await add_annoyance(servers, server, 1)
-           with open("servers.json", "w") as f:
-               json.dump(servers, f)
-           if servers[server.id]["annoyance"] < 66:
-              possible_responses = [
-                "Wouldn't want to spend anymore time near you than I gotta, fuckface.",
-                "Jealous?",
-                "You compensating for something?"
-                ]
-              embed.set_thumbnail(url=smug)
-           elif servers[server.id]["annoyance"] >65 :
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await add_annoyance(servers, server, 1)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Yeah, whatever. Bitch.",
-                 "Wow, so smart. Asshat.",
-                 "Don't got anything better, dipshit?",
-                 ]
-              embed.set_thumbnail(url=eyeroll)
+    elif message.content.startswith(("oh fuck off gavin", "fuck off gavin", "gavin fuck off")):
+        with open("servers.json", "r") as f:
+           servers = json.load(f)
+        await add_annoyance(servers, server, 1)
+        with open("servers.json", "w") as f:
+           json.dump(servers, f)
+        if servers[server.id]["annoyance"] < 66:
+          possible_responses = [
+            "Wouldn't want to spend anymore time near you than I gotta, fuckface.",
+            "Jealous?",
+            "You compensating for something?"
+            ]
+          embed.set_thumbnail(url=smug)
+        elif servers[server.id]["annoyance"] >65 :
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await add_annoyance(servers, server, 1)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Yeah, whatever. Bitch.",
+             "Wow, so smart. Asshat.",
+             "Don't got anything better, dipshit?",
+             ]
+          embed.set_thumbnail(url=eyeroll)
 
-        elif message.content.startswith(("oh fuck off", "fuck off")):
-           with open("servers.json", "r") as f:
-               servers = json.load(f)
-           await add_annoyance(servers, server, 1)
-           with open("servers.json", "w") as f:
-               json.dump(servers, f)
-           if servers[server.id]["annoyance"] < 66:
-              possible_responses = [
-                 "Wouldn't want to spend anymore time near you than I gotta, fuckface.",
-                 "Jealous?",
-                 "You compensating for something?"
-                 ]
-              embed.set_thumbnail(url=smug)
-           elif servers[server.id]["annoyance"] >65 :
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await add_annoyance(servers, server, 1)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Yeah, whatever. Bitch.",
-                 "Wow, so smart. Asshat.",
-                 "Don't got anything better, dipshit?",
-                 ]
-              embed.set_thumbnail(url=eyeroll)
+    elif message.content.startswith(("kill yourself gavin", "go kill yourself gavin", "gavin kill yourself", "gavin go kill yourself")):
+       with open("servers.json", "r") as f:
+           servers = json.load(f)
+       await add_annoyance(servers, server, 1)
+       with open("servers.json", "w") as f:
+           json.dump(servers, f)
+       if servers[server.id]["annoyance"] < 66:
+           possible_responses = [
+              "If I don't have to talk to you anymore? Gladly.",
+              "Oh wow. Such clever. Much insult. I am truly hurt.",
+              "only if you go first, babe ~ "
+              ]
+           embed.set_thumbnail(url=smug)
+       elif servers[server.id]["annoyance"] >65 :
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await add_annoyance(servers, server, 1)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Yeah, whatever. Bitch.",
+             "Wow, so smart. Asshat.",
+             "Don't got anything better, dipshit?",
+             ]
+          embed.set_thumbnail(url=eyeroll)
 
-        elif message.content.startswith(("kill yourself", "go kill yourself")):
-           with open("servers.json", "r") as f:
-               servers = json.load(f)
-           await add_annoyance(servers, server, 1)
-           with open("servers.json", "w") as f:
-               json.dump(servers, f)
-           if servers[server.id]["annoyance"] < 66:
-               possible_responses = [
-                  "If I don't have to talk to you anymore? Gladly.",
-                  "Oh wow. Such clever. Much insult. I am truly hurt.",
-                  "only if you go first, babe ~ "
-                  ]
-               embed.set_thumbnail(url=smug)
-           elif servers[server.id]["annoyance"] >65 :
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await add_annoyance(servers, server, 1)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Yeah, whatever. Bitch.",
-                 "Wow, so smart. Asshat.",
-                 "Don't got anything better, dipshit?",
-                 ]
-              embed.set_thumbnail(url=eyeroll)
+    elif message.content.startswith(("i love you gavin", "gavin i love you")):
+       if servers[server.id]["annoyance"] < 11:
+          possible_responses = [
+             "I... Thank you.",
+             "Wow, well... thanks.",
+             ]
+          embed.set_thumbnail(url=happy)
+       elif 10 < servers[server.id]["annoyance"] < 56:
+          possible_responses = [
+             "A horrible decision, really.",
+             "Oh, really?",
+             "Ew, gross."
+             ]
+          embed.set_thumbnail(url=smug)
+       elif 55 < servers[server.id]["annoyance"] < 86:
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await add_annoyance(servers, server, 1)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Yeah, sure you do.",
+             "Oh yeah? Sure, man.",
+             ]
+          embed.set_thumbnail(url=eyeroll)
+       elif 85 < servers[server.id]["annoyance"]:
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await add_annoyance(servers, server, 1)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "NO, YOU FUCKING DON'T, YOU DON'T EVEN KNOW ME.",
+             "Oh fuck off, you don't. You really fucking don't.",
+             ]
+          embed.set_thumbnail(url=mad2)
 
-        elif message.content.startswith("i love you"):
-           if servers[server.id]["annoyance"] < 11:
-              possible_responses = [
-                 "I... Thank you.",
-                 "Wow, well... thanks.",
-                 ]
-              embed.set_thumbnail(url=happy)
-           elif 10 < servers[server.id]["annoyance"] < 56:
-              possible_responses = [
-                 "A horrible decision, really.",
-                 "Oh, really?",
-                 "Ew, gross."
-                 ]
-              embed.set_thumbnail(url=smug)
-           elif 55 < servers[server.id]["annoyance"] < 86:
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await add_annoyance(servers, server, 1)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Yeah, sure you do.",
-                 "Oh yeah? Sure, man.",
-                 ]
-              embed.set_thumbnail(url=eyeroll)
-           elif 85 < servers[server.id]["annoyance"]:
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await add_annoyance(servers, server, 1)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "NO, YOU FUCKING DON'T, YOU DON'T EVEN KNOW ME.",
-                 "Oh fuck off, you don't. You really fucking don't.",
-                 ]
-              embed.set_thumbnail(url=mad2)
+    elif message.content.startswith(("fuck me gavin", "gavin fuck me")):
+       if servers[server.id]["annoyance"] < 66:
+          possible_responses = [
+             "Name a time and a place, babe.",
+             "Oh, kinky.",
+             ]
+          embed.set_thumbnail(url=smug)
+       elif 65 < servers[server.id]["annoyance"]:
+          with open("servers.json", "r") as f:
+              servers = json.load(f)
+          await add_annoyance(servers, server, 1)
+          with open("servers.json", "w") as f:
+              json.dump(servers, f)
+          possible_responses = [
+             "Ew, gross.",
+             "Yeah, no, not gonna happen.",
+             ]
+          embed.set_thumbnail(url=eyeroll)
 
-        elif message.content.startswith("fuck me"):
-           if servers[server.id]["annoyance"] < 66:
-              possible_responses = [
-                 "Name a time and a place, babe.",
-                 "Oh, kinky.",
-                 ]
-              embed.set_thumbnail(url=smug)
-           elif 65 < servers[server.id]["annoyance"]:
-              with open("servers.json", "r") as f:
-                  servers = json.load(f)
-              await add_annoyance(servers, server, 1)
-              with open("servers.json", "w") as f:
-                  json.dump(servers, f)
-              possible_responses = [
-                 "Ew, gross.",
-                 "Yeah, no, not gonna happen.",
-                 ]
-              embed.set_thumbnail(url=eyeroll)
-
-        elif message.content.startswith(("shut up", "gavin shut up")):
-            possible_responses = [
-               "I say whatever the fuck I want, asshole.",
-               "You can't tell me what to do, fuckface.",
-               ]
-            embed.set_thumbnail(url=smug)
-
-
-
-
-
-        else:
-            return
-
-        embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
-
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        if message.content.startswith(("hello", "hi", "hey", "what's up")):
-            embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
-        await client.send_message(message.channel, embed=embed)
+    elif message.content.startswith(("shut up gavin", "gavin shut up")):
+        possible_responses = [
+           "I say whatever the fuck I want, asshole.",
+           "You can't tell me what to do, fuckface.",
+           ]
+        embed.set_thumbnail(url=smug)
 
 ###### just words ######
 
     elif message.content.startswith("owo"):
         if servers[server.id]["annoyance"] <66:
-           await client.send_typing(message.channel)
-           time.sleep(1)
-           embed = discord.Embed(**em)
-           embed.set_thumbnail(url=weeb)
-           embed.add_field(name='\u200b', value= "**uwu**", inline=False)
-           await client.send_message(message.channel, embed=embed)
+            possible_responses = [
+            "uwu"
+            ]
 
     elif message.content.startswith("uwu"):
         if servers[server.id]["annoyance"] <66:
-           await client.send_typing(message.channel)
-           time.sleep(1)
-           embed = discord.Embed(**em)
-           embed.set_thumbnail(url=weeb)
-           embed.add_field(name='\u200b', value= "***OwO***", inline=False)
-           await client.send_message(message.channel, embed=embed)
+            possible_responses = [
+            "***OwO***"
+            ]
 
     elif "vore" in message.content:
         if message.author.id == "508110104726339633":
@@ -1090,65 +1019,44 @@ async def on_message(message):
            await add_annoyance(servers, server, 10)
            with open("servers.json", "w") as f:
                json.dump(servers, f)
-           await client.send_typing(message.channel)
-           time.sleep(0.5)
-           embed = discord.Embed(**em)
-           embed.set_thumbnail(url=mad2)
-           embed.add_field(name='\u200b', value= "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE", inline=False)
-           await client.send_message(message.channel, embed=embed)
+        possible_responses = [
+        "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
+        ]
 
-    elif message.content.startswith("dick"):
+    elif message.content == "dick":
         if servers[server.id]["annoyance"] <66:
-           await client.send_typing(message.channel)
-           time.sleep(1)
-           embed = discord.Embed(**em)
-           embed.set_thumbnail(url=lewd)
-           embed.add_field(name='\u200b', value= "Mhmmm dick. Slurp.", inline=False)
-           await client.send_message(message.channel, embed=embed)
+            possible_responses = [
+            "Mhh dick. Slurp."
+            ]
 
-    elif message.content.startswith(("bye", "good bye")):
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        embed = discord.Embed(**em)
-        embed.set_thumbnail(url=default)
-        embed.add_field(name='\u200b', value= "Bye. Dickhead.", inline=False)
-        await client.send_message(message.channel, embed=embed)
 
-    elif message.content.startswith(("hewwo")):
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        embed = discord.Embed(**em)
-        embed.set_thumbnail(url=weeb)
-        embed.add_field(name='\u200b', value= "Hewwo owo", inline=False)
-        await client.send_message(message.channel, embed=embed)
-
-    elif message.content.startswith(("good morning", "morning")):
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        embed = discord.Embed(**em)
-        embed.set_thumbnail(url=default)
-        embed.add_field(name='\u200b', value= "Morning, SLUTS!", inline=False)
-        await client.send_message(message.channel, embed=embed)
+    elif message.content == "hewwo gavin":
+        possible_responses = [
+        "I'M A BAD BITCH YOU CAN'T STOP ME"
+        ]
 
     elif message.content.startswith(("gavin stop", "stop gavin")):
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        embed = discord.Embed(**em)
-        embed.set_thumbnail(url=default)
-        embed.add_field(name='\u200b', value= "I'M A BAD BITCH YOU CAN'T STOP ME", inline=False)
-        await client.send_message(message.channel, embed=embed)
-
-    elif message.content.startswith(("gay")):
-        await client.send_typing(message.channel)
-        time.sleep(1)
-        embed = discord.Embed(**em)
-        embed.set_thumbnail(url=smug)
-        embed.add_field(name='\u200b', value= "MOVE I'M GAY", inline=False)
-        await client.send_message(message.channel, embed=embed)
+        possible_responses = [
+        "I'M A BAD BITCH YOU CAN'T STOP ME"
+        ]
 
 
 
+    elif message.content == "gay":
+        possible_responses = [
+        "MOVE I'M GAY"
+        ]
+
+    else:
+        return
+
+    await client.send_typing(message.channel)
+    time.sleep(1)
+    embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
+    await client.send_message(message.channel, embed=embed)
     await client.process_commands(message)
+
+
 
 
 
