@@ -1014,9 +1014,9 @@ async def on_message(message):
            await add_annoyance(servers, server, 10)
            with open("servers.json", "w") as f:
                json.dump(servers, f)
-            possible_responses = [
-                "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
-                ]
+           possible_responses = [
+               "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
+               ]
 
     elif message.content == "dick":
         embed.set_thumbnail(url=lewd)
