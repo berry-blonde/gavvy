@@ -18,12 +18,11 @@ BOT_PREFIX = 'g!'
 client = Bot(command_prefix=BOT_PREFIX)
 client.remove_command("help")
 
-print("I'm in")
 
 @client.event
 async def on_ready():
-
-    await client.change_presence(game=discord.Game(name="got a support server now~"))
+    print("I'm in")
+    await client.change_presence(game=discord.Game(name="Merry Crisis!"))
 
 
 @client.event
@@ -1014,6 +1013,7 @@ async def on_message(message):
            await add_annoyance(servers, server, 10)
            with open("servers.json", "w") as f:
                json.dump(servers, f)
+           embed.set_thumbnail(url=mad2)
            possible_responses = [
                "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
                ]
@@ -1042,6 +1042,7 @@ async def on_message(message):
         possible_responses = [
         "MOVE I'M GAY"
         ]
+        
 
     else:
         await client.process_commands(message)
