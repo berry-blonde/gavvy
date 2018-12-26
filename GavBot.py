@@ -1261,6 +1261,8 @@ async def on_message(message):
     elif "vore" in message.content:
         if message.author.id == "508110104726339633":
            return
+        elif server.id == "475904821053095967":
+            return
         else:
            with open("servers.json", "r") as f:
                servers = json.load(f)
