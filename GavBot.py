@@ -86,6 +86,11 @@ async def annoyancecounter(servers, server, annoyance):
                 json.dump(servers, f)
             await asyncio.sleep(600)
 
+async def update_users(users, user):
+    if not user.name in users:
+        users[user.name] = {}
+        users[user.name]["text"] = "no info"
+
 em = {"title":"Gavin Reed", "color":0xc70000}
 
 ###### faces ######
@@ -180,6 +185,9 @@ async def commands(context):
     embed.add_field(name='roast', value= "Hah, buuurn.", inline=True)
     embed.add_field(name='verse', value= ":eyes:", inline=True)
     embed.add_field(name='nut', value= "You'll nut. Trust me.", inline=True)
+    embed.add_field(name='add', value= "Add info to a member.", inline=True)
+    embed.add_field(name='whois', value= "Who a member is.", inline=True)
+    embed.add_field(name='clear', value= "Clears all info on a member.", inline=True)
 
     await client.send_message(context.message.author, embed=embed)
 
@@ -233,10 +241,78 @@ async def updates(context):
     embed = discord.Embed(**em)
     embed.set_thumbnail(url=winkwonk)
 
-    embed.add_field(name='**RECENT UPDATES**', value= "UPDATE 25/12/18: GavBot now reacts to asking who certain characters are.", inline=False)
+    embed.add_field(name='**RECENT UPDATES**', value= "UPDATE 25/12/18: GavBot now reacts to asking who certain characters are. \n UPDATE 27/12/18: Added the g!add, g!whois and g!clear commands, fixed some minor typos. ", inline=False)
 
     await client.say(embed=embed)
 
+#@has_permissions(administrator=True)
+@client.command(pass_context = True)
+async def add(context,target: discord.Member, *, stuff):
+     embed = discord.Embed(**em)
+     with open("users.json", "r") as f:
+         users = json.load(f)
+     await update_users(users, target)
+     if users[target.name]["text"] == "no info":
+         users[target.name]["text"] = stuff
+     else:
+         users[target.name]["text"] = users[target.name]["text"] + ", " + stuff
+     with open("users.json", "w") as f:
+         json.dump(users, f)
+
+     embed.set_thumbnail(url=winkwonk)
+     embed.add_field(name='\u200b', value= "'{}' has been added to {}.".format(stuff, target.mention), inline=False)
+     await client.say(embed=embed)
+
+# @add.error
+# async def add_error(error, context, target: discord.Member, *, stuff):
+#     if isinstance(error, CheckFailure):
+#         if target == context.message.author:
+#             embed = discord.Embed(**em)
+#             with open("users.json", "r") as f:
+#                 users = json.load(f)
+#             await update_users(users, target)
+#             if users[target.name]["text"] == "no info":
+#                 users[target.name]["text"] = stuff
+#             else:
+#                 users[target.name]["text"] = users[target.name]["text"] + ", " + stuff
+#             with open("users.json", "w") as f:
+#                 json.dump(users, f)
+#
+#             embed.set_thumbnail(url=winkwonk)
+#             embed.add_field(name='\u200b', value= "'{}' has been added to {}.".format(stuff, target.mention), inline=False)
+#             await client.say(embed=embed)
+#         else:
+#             embed = discord.Embed(**em)
+#             embed.set_thumbnail(url=smug)
+#             embed.add_field(name='\u200b', value= "Sorry, fuckface, you gotta be an admin to add to users other than yourself.", inline=True)
+#             await client.send_message(context.message.channel, embed=embed)
+
+@client.command(pass_context = True)
+async def whois(context,target: discord.Member):
+     embed = discord.Embed(**em)
+     with open("users.json", "r") as f:
+         users = json.load(f)
+     if users[target.name]["text"] == "no info":
+         embed.add_field(name='\u200b', value= "I don't know shit about {}.".format(target.mention), inline=False)
+         embed.set_thumbnail(url=eyeroll)
+     else:
+         embed.add_field(name='\u200b', value= "{} is {}.".format(target.mention, users[target.name]["text"]), inline=False)
+         embed.set_thumbnail(url=winkwonk)
+     await client.say(embed=embed)
+
+@client.command(pass_context = True)
+async def clear(context,target: discord.Member):
+     embed = discord.Embed(**em)
+     with open("users.json", "r") as f:
+         users = json.load(f)
+     users[target.name]["text"] = "no info"
+
+     with open("users.json", "w") as f:
+         json.dump(users, f)
+
+     embed.set_thumbnail(url=winkwonk)
+     embed.add_field(name='\u200b', value= "Info for {} has been cleared.".format(target.mention), inline=False)
+     await client.say(embed=embed)
 
 @client.command(name="annoyed", pass_context=True)
 async def annoyed(context):
@@ -572,7 +648,7 @@ async def on_message(message):
     #             ]
     #     embed.set_thumbnail(url=eyeroll)
 
-    ###### who is ######
+###### who is ######
 
     elif message.content == "gavin who is connor":
         await add_annoyance(servers, server, 1)
@@ -580,9 +656,9 @@ async def on_message(message):
                 "What is he always says? The android sent by CyberLife? What a prick.",
                 "Fuckin' android detective.",
                 "A fucking prick, that's who he is.",
-                "Anderson's platic pet, lol."
+                "Anderson's plastic pet, lol."
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is hank":
         await add_annoyance(servers, server, 1)
@@ -591,7 +667,7 @@ async def on_message(message):
                 "Anderson? A fucking drunkard.",
                 "Why are you asking me?"
                 ]
-        embed.set_thumbnail(url=default)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is markus":
         await add_annoyance(servers, server, 1)
@@ -600,13 +676,13 @@ async def on_message(message):
                 "The revolution guy? With the blue and green eye? What are you asking me for?",
                 "He's like jesus but an android or some shit."
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is fowler":
         await add_annoyance(servers, server, 1)
         possible_responses = [
                 "My shitty ass boss, that's who.",
-                "Shouting bold guy? That's my boss.",
+                "Shouting bald guy? That's my boss.",
                 ]
         embed.set_thumbnail(url=eyeroll)
 
@@ -644,7 +720,7 @@ async def on_message(message):
                     "The idiot bitch who created me is into him. Horrible taste, really.",
                     "That's the android fucker dude, right?"
                     ]
-            embed.set_thumbnail(url=eyeroll)
+            embed.set_thumbnail(url=disgusting)
         elif servers[server.id]["annoyance"] >65:
             await add_annoyance(servers, server, 1)
             possible_responses = [
@@ -662,7 +738,7 @@ async def on_message(message):
                 "Elijah Kamski? Dude can suck my ass. I mean, he, uh, he created androids.",
                 "I don't fucking care about my asshole of a broth- i mean, about the dude."
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is north":
         await add_annoyance(servers, server, 1)
@@ -671,7 +747,7 @@ async def on_message(message):
                 "Android revolution chick? Fuck if I know.",
                 "The opposite of south?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is simon":
         await add_annoyance(servers, server, 1)
@@ -680,7 +756,7 @@ async def on_message(message):
                 "Uh, shit, no clue.",
                 "Isn't that one of the androids?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is josh":
         await add_annoyance(servers, server, 1)
@@ -689,7 +765,7 @@ async def on_message(message):
                 "Uh, rings a bell, but I have no clue who exactly.",
                 "Isn't that one of the androids?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is rupert":
         await add_annoyance(servers, server, 1)
@@ -698,7 +774,7 @@ async def on_message(message):
                 "Whomst've?",
                 "The fuck do I know?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is ralph":
         await add_annoyance(servers, server, 1)
@@ -707,7 +783,7 @@ async def on_message(message):
                 "Whomst've?",
                 "The fuck do I know?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is traci":
         await add_annoyance(servers, server, 1)
@@ -716,7 +792,7 @@ async def on_message(message):
                 "Whomst've?",
                 "The fuck do I know?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who are the tracis":
         await add_annoyance(servers, server, 1)
@@ -725,7 +801,7 @@ async def on_message(message):
                 "Whomst've?",
                 "The fuck do I know?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is alice":
         if servers[server.id]["annoyance"] >15:
@@ -735,7 +811,8 @@ async def on_message(message):
                     "Some kid android, right? Those are so fucking creepy I swear to God.",
                     "Isn't she one of those child androids?"
                     ]
-            embed.set_thumbnail(url=eyeroll)
+            embed.set_thumbnail(url=disgusting)
+
         elif servers[server.id]["annoyance"] <16:
             await add_annoyance(servers, server, 1)
             possible_responses = [
@@ -752,7 +829,7 @@ async def on_message(message):
                 "Isn't she like the mother of that android kid?"
                 "The fuck do I know?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is luther":
         await add_annoyance(servers, server, 1)
@@ -761,7 +838,7 @@ async def on_message(message):
                 "isn't he like the android kid's dad?",
                 "The fuck do I know?"
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
 
     elif message.content == "gavin who is perkins":
         await add_annoyance(servers, server, 1)
@@ -770,7 +847,16 @@ async def on_message(message):
                 "The FBI agent Hank punched, right?",
                 "Some FBI asshole."
                 ]
-        embed.set_thumbnail(url=eyeroll)
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content == "gavin who is sumo":
+        possible_responses = [
+                "Why the hell are you asking me for Anderson's dog? The one that's not Connor I mean.",
+                "Isn't that that walking flee hotel Connor loves so much?"
+                "One word: huge, drooling dog. Gag."
+                ]
+        embed.set_thumbnail(url=disgusting)
+
 
 
 ###### other stuff ######
