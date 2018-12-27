@@ -44,11 +44,11 @@ async def update_data(servers, server):
 
 
 async def add_annoyance(servers, server, annoyance):
-    servers[server.id]["annoyance"] = min(max(servers[server.id]["annoyance"] + random.randint(0,annoyance), 0), 100)
+    servers[server.id]["annoyance"] = min(max(servers[server.id]["annoyance"] + random.randint(1,annoyance), 0), 100)
 
 
 async def remove_annoyance(servers, server, annoyance):
-    servers[server.id]["annoyance"] = min(max(servers[server.id]["annoyance"] - random.randint(0,annoyance), 0), 100)
+    servers[server.id]["annoyance"] = min(max(servers[server.id]["annoyance"] - random.randint(1,annoyance), 0), 100)
 
 
 async def annoyancecounter(servers, server, annoyance):
@@ -116,12 +116,13 @@ async def reset(context):
     server = context.message.author.server
     with open("servers.json", "r") as f:
         servers = json.load(f)
-    await reset_annoyance(servers, server, annoyance)
+    servers[server.id]["annoyance"] = 20
     with open("servers.json", "w") as f:
         json.dump(servers, f)
     embed = discord.Embed(**em)
     embed.set_thumbnail(url=winkwonk)
     embed.add_field(name='\u200b', value= "Annoyance has been reset to 20%.", inline=True)
+    await client.send_message(context.message.channel, embed=embed)
 
 @reset.error
 async def reset_error(error, context):
@@ -1261,8 +1262,14 @@ async def on_message(message):
     elif "vore" in message.content:
         if message.author.id == "508110104726339633":
            return
-        elif server.id == "475904821053095967":
-            return
+        elif message.server.id == "475904821053095967":
+           user = message.author
+           shame = discord.utils.get(message.server.roles,name='shame corner')
+           await client.add_roles(user, shame)
+           embed.set_thumbnail(url=mad2)
+           possible_responses = [
+               "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
+               ]
         else:
            with open("servers.json", "r") as f:
                servers = json.load(f)
@@ -1313,12 +1320,15 @@ async def on_message(message):
 
 
 
+
 ###### dev commands ######
 
 @client.command(name='inc',
-                brief="these are all deveoper commands right now")
+                brief="these are all deveoper commands right now",
+                pass_context = True)
 
-async def inc():
+async def inc(context):
+    server = context.message.author.server
     with open("servers.json", "r") as f:
         servers = json.load(f)
     servers[server.id]["annoyance"] = servers[server.id]["annoyance"] + 20
@@ -1326,9 +1336,10 @@ async def inc():
         json.dump(servers, f)
     await client.say(servers[server.id]["annoyance"])
 
-@client.command(name='dec')
+@client.command(name='dec', pass_context = True)
 
-async def dec():
+async def dec(context):
+    server = context.message.author.server
     with open("servers.json", "r") as f:
         servers = json.load(f)
     servers[server.id]["annoyance"] = servers[server.id]["annoyance"] - 20
