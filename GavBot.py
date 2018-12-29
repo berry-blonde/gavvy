@@ -1157,9 +1157,16 @@ async def on_message(message):
           embed.set_thumbnail(url=default)
 
     elif message.content.startswith(("bye gavin", "goodbye gavin")):
-       possible_responses = [
-         "Bye. Dickhead.",
-         ]
+        possible_responses = [
+          "Bye. Dickhead.",
+          ]
+        embed.set_thumbnail(url=smug)
+    elif message.content.startswith(("gavin i'd die for you", "gavin i'll die for you", "gavin i would die for you")):
+        possible_responses = [
+           "Then perish.",
+           "Trust me, you will.",
+           ]
+        embed.set_thumbnail(url=smug)
 
 
 ###### a lot of fuck ######
