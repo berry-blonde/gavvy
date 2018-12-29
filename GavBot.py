@@ -188,6 +188,7 @@ async def commands(context):
     embed.add_field(name='add', value= "Add info to a member.", inline=True)
     embed.add_field(name='whois', value= "Who a member is.", inline=True)
     embed.add_field(name='clear', value= "Clears all info on a member.", inline=True)
+    embed.add_field(name='say', value= "Make Gavin say shit in a specified channel. Admin command.", inline=True)
 
     await client.send_message(context.message.author, embed=embed)
 
@@ -241,7 +242,7 @@ async def updates(context):
     embed = discord.Embed(**em)
     embed.set_thumbnail(url=winkwonk)
 
-    embed.add_field(name='**RECENT UPDATES**', value= "UPDATE 25/12/18: GavBot now reacts to asking who certain characters are. \n UPDATE 27/12/18: Added the g!add, g!whois and g!clear commands, fixed some minor typos. ", inline=False)
+    embed.add_field(name='**RECENT UPDATES**', value= "**UPDATE 25/12/18:** GavBot now reacts to asking who certain characters are. \n **UPDATE 27/12/18:** Added the g!add, g!whois and g!clear commands, fixed some minor typos. \n **UPDATE 29/12/18:** Added the g!say command and the ability to ask who Gavin is, fixed some more minor things. ", inline=False)
 
     await client.say(embed=embed)
 
@@ -263,30 +264,6 @@ async def add(context,target: discord.Member, *, stuff):
      embed.add_field(name='\u200b', value= "'{}' has been added to {}.".format(stuff, target.mention), inline=False)
      await client.say(embed=embed)
 
-# @add.error
-# async def add_error(error, context, target: discord.Member, *, stuff):
-#     if isinstance(error, CheckFailure):
-#         if target == context.message.author:
-#             embed = discord.Embed(**em)
-#             with open("users.json", "r") as f:
-#                 users = json.load(f)
-#             await update_users(users, target)
-#             if users[target.name]["text"] == "no info":
-#                 users[target.name]["text"] = stuff
-#             else:
-#                 users[target.name]["text"] = users[target.name]["text"] + ", " + stuff
-#             with open("users.json", "w") as f:
-#                 json.dump(users, f)
-#
-#             embed.set_thumbnail(url=winkwonk)
-#             embed.add_field(name='\u200b', value= "'{}' has been added to {}.".format(stuff, target.mention), inline=False)
-#             await client.say(embed=embed)
-#         else:
-#             embed = discord.Embed(**em)
-#             embed.set_thumbnail(url=smug)
-#             embed.add_field(name='\u200b', value= "Sorry, fuckface, you gotta be an admin to add to users other than yourself.", inline=True)
-#             await client.send_message(context.message.channel, embed=embed)
-
 @client.command(pass_context = True)
 async def whois(context,target: discord.Member):
      embed = discord.Embed(**em)
@@ -294,6 +271,9 @@ async def whois(context,target: discord.Member):
          users = json.load(f)
      if users[target.name]["text"] == "no info":
          embed.add_field(name='\u200b', value= "I don't know shit about {}.".format(target.mention), inline=False)
+         embed.set_thumbnail(url=eyeroll)
+     elif target.id == "476176194522316801":
+         embed.add_field(name='\u200b', value= "Hah, hah, ha. Very funny, asshole.", inline=False)
          embed.set_thumbnail(url=eyeroll)
      else:
          embed.add_field(name='\u200b', value= "{} is {}.".format(target.mention, users[target.name]["text"]), inline=False)
@@ -313,6 +293,25 @@ async def clear(context,target: discord.Member):
      embed.set_thumbnail(url=winkwonk)
      embed.add_field(name='\u200b', value= "Info for {} has been cleared.".format(target.mention), inline=False)
      await client.say(embed=embed)
+
+@client.command(name="say", pass_context=True)
+@has_permissions(administrator=True)
+async def say(context, channel: discord.Channel, *, stuff):
+    server = context.message.author.server
+    embed = discord.Embed(**em)
+    embed.add_field(name='\u200b', value= stuff, inline=False)
+    embed.set_thumbnail(url=winkwonk)
+    await client.send_message(channel, embed=embed)
+    await client.delete_message(context.message)
+
+@say.error
+async def say_error(error, context):
+    if isinstance(error, CheckFailure):
+        embed = discord.Embed(**em)
+        embed.set_thumbnail(url=smug)
+        embed.add_field(name='\u200b', value= "Sorry, fuckface, looks like you don't have the permission to use that.", inline=True)
+        await client.send_message(context.message.channel, embed=embed)
+
 
 @client.command(name="annoyed", pass_context=True)
 async def annoyed(context):
@@ -857,6 +856,14 @@ async def on_message(message):
                 ]
         embed.set_thumbnail(url=disgusting)
 
+    elif message.content == "gavin who is gavin":
+        possible_responses = [
+                "Are you fucking shitting me?",
+                "Yeah, fuck you too."
+                "Ha. Ha. Ha. SO funny."
+                ]
+        embed.set_thumbnail(url=eyeroll)
+
 
 
 ###### other stuff ######
@@ -991,13 +998,11 @@ async def on_message(message):
 
     elif message.content == "gavin":
 
-        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
-
         if servers[server.id]["annoyance"] <36:
             possible_responses = [
                     "Yo, what's the matter?",
                     "What do ya want?",
-                    "ayyy, what's up?",
+                    "Ayyy, what's up?",
                     "You called?"
                     ]
             embed.set_thumbnail(url=default)
@@ -1022,14 +1027,11 @@ async def on_message(message):
 ####### Hello-Block ######
 
     elif message.content.startswith(("hello gavin", "hi gavin", "hey gavin", "what's up gavin")):
-
-        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
-
         if servers[server.id]["annoyance"] <36:
             possible_responses = [
                     "Yo, what's the matter?",
                     "What do ya want?",
-                    "ayyy, what's up?"
+                    "Ayyy, what's up?"
                     ]
             embed.set_thumbnail(url=default)
         elif 35< servers[server.id]["annoyance"] <71:
@@ -1356,6 +1358,8 @@ async def on_message(message):
            possible_responses = [
                "SHUT YOUR FUCKING MOUTH WE DON'T TALK ABOUT THAT HERE"
                ]
+        elif "flavor" in message.content:
+            pass
         else:
            with open("servers.json", "r") as f:
                servers = json.load(f)
@@ -1400,6 +1404,14 @@ async def on_message(message):
     await client.send_typing(message.channel)
     time.sleep(1)
     embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
+    if message.content == "gavin":
+        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+    elif message.content == "hello gavin":
+        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+    elif message.content == "hi gavin":
+        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+    elif message.content == "hey gavin":
+        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
     await client.send_message(message.channel, embed=embed)
     await client.process_commands(message)
 
