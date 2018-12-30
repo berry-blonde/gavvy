@@ -242,7 +242,7 @@ async def updates(context):
     embed = discord.Embed(**em)
     embed.set_thumbnail(url=winkwonk)
 
-    embed.add_field(name='**RECENT UPDATES**', value= "**UPDATE 25/12/18:** GavBot now reacts to asking who certain characters are. \n **UPDATE 27/12/18:** Added the g!add, g!whois and g!clear commands, fixed some minor typos. \n **UPDATE 29/12/18:** Added the g!say command and the ability to ask who Gavin is, fixed some more minor things. **UPDATE 30/12/18:** You can ask him how certain characters are, and his opinon on them. He now reacts to being called cute, adorable and a good boy.", inline=False)
+    embed.add_field(name='**RECENT UPDATES**', value= "**UPDATE 25/12/18:** GavBot now reacts to asking who certain characters are. \n **UPDATE 27/12/18:** Added the g!add, g!whois and g!clear commands, fixed some minor typos. \n **UPDATE 29/12/18:** Added the g!say command and the ability to ask who Gavin is, fixed some more minor things. \n **UPDATE 30/12/18:** You can ask him how certain characters are, and his opinon on them. He now reacts to being called cute, adorable and a good boy.", inline=False)
 
     await client.say(embed=embed)
 
