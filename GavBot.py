@@ -204,7 +204,7 @@ async def triggers(context):
     embed.add_field(name='\u200b', value= "**INSULTS**", inline=False)
     embed.add_field(name='For example:', value= "Fuck you Gavin, Fuck off Gavin, etc.", inline=True)
     embed.add_field(name='\u200b', value= "**QUESTIONS**", inline=False)
-    embed.add_field(name='For example:', value= "Asking about Connor, asking him to talk about his cats, asking if he wants a coffe, asking who a character is.", inline=True)
+    embed.add_field(name='For example:', value= "Asking what he thinks about characters, how characters are, asking who a character is, asking him to talk about his cats, asking if he wants a coffe,", inline=True)
     embed.add_field(name='\u200b', value= "Don't forget to add his name!", inline=False)
 
     await client.send_message(context.message.author, embed=embed)
@@ -242,7 +242,7 @@ async def updates(context):
     embed = discord.Embed(**em)
     embed.set_thumbnail(url=winkwonk)
 
-    embed.add_field(name='**RECENT UPDATES**', value= "**UPDATE 25/12/18:** GavBot now reacts to asking who certain characters are. \n **UPDATE 27/12/18:** Added the g!add, g!whois and g!clear commands, fixed some minor typos. \n **UPDATE 29/12/18:** Added the g!say command and the ability to ask who Gavin is, fixed some more minor things. ", inline=False)
+    embed.add_field(name='**RECENT UPDATES**', value= "**UPDATE 25/12/18:** GavBot now reacts to asking who certain characters are. \n **UPDATE 27/12/18:** Added the g!add, g!whois and g!clear commands, fixed some minor typos. \n **UPDATE 29/12/18:** Added the g!say command and the ability to ask who Gavin is, fixed some more minor things. **UPDATE 30/12/18:** You can ask him how certain characters are, and his opinon on them. He now reacts to being called cute, adorable and a good boy.", inline=False)
 
     await client.say(embed=embed)
 
@@ -548,7 +548,7 @@ async def on_message(message):
 
 ###### opinions on characters ######
 
-    elif message.content == "gavin what do you think about connor?":
+    elif message.content.startswith ("gavin what do you think about connor"):
         if servers[server.id]["annoyance"] <5:
            possible_responses = [
               "He's... I have to admit, he's pretty. And nice. And... god i have it bad, huh?",
@@ -609,7 +609,7 @@ async def on_message(message):
                 ]
             embed.set_thumbnail(url=emb3)
 
-    elif message.content == "gavin what do you think about hank?":
+    elif message.content.startswith ("gavin what do you think about hank"):
         with open("servers.json", "r") as f:
             servers = json.load(f)
         await add_annoyance(servers, server, 1)
@@ -618,7 +618,7 @@ async def on_message(message):
         if servers[server.id]["annoyance"] < 66:
            possible_responses = [
                     "What am I supposed to think? He's my shitty colleague.",
-                    "Hank? Lieutenant drunk-at-eleven-in-the-morning?"
+                    "Hank? Lieutenant drunk-at-eleven-in-the-morning?",
                     "Not much good shit, that's for sure."
                     ]
            embed.set_thumbnail(url=smug)
@@ -629,23 +629,167 @@ async def on_message(message):
                 ]
             embed.set_thumbnail(url=eyeroll)
 
-    elif message.content == "gavin what do you think about markus?":
+    elif message.content.startswith ("gavin what do you think about markus"):
         await add_annoyance(servers, server, 1)
         possible_responses = [
                 "What? Robo-Jesus? Why the fuck are you asking me for him?",
                 "What the hell am i supposed to think about Robo-Jesus?"
                 "Dafaq you asking me?"
                 ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about fowler"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "There are worse bosses, I guess.",
+                "He's my boss, what do you want to hear?"
+                "I just fucking wish he'd give me some more interesting cases."
+                ]
         embed.set_thumbnail(url=eyeroll)
 
-    # elif message.content == "gavin what do you think about markus?":
-    #     await add_annoyance(servers, server, 1)
-    #     possible_responses = [
-    #             "What? Robo-Jesus? Why the fuck are you asking me for him?",
-    #             "What the hell am i supposed to think about Robo-Jesus?"
-    #             "Dafaq you asking me?"
-    #             ]
-    #     embed.set_thumbnail(url=eyeroll)
+    elif message.content.startswith ("gavin what do you think about tina"):
+        possible_responses = [
+                "Tina is just the best human being ever. Seriously.",
+                "Love her. She's probably my best friend."
+                "She's awesome!"
+                ]
+        embed.set_thumbnail(url=winkwonk)
+
+    elif message.content.startswith ("gavin what do you think about nines"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "You mean that android that looks like Connor but with a resting bitch face? Uh, no clue man.",
+                "Nines? Barely know him, to be honest.",
+                "The android with the gun dick?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about chris"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "He's probably the best person here at the precinct, right after Tina.",
+                "One of my best friends, a great dude.",
+                "He's a good cop, and a really fucking great friend."
+                ]
+        embed.set_thumbnail(url=winkwonk)
+
+    elif message.content.startswith (("gavin what do you think about kamski", "gavin what do you think about elijah")):
+        await add_annoyance(servers, server, 3)
+        possible_responses = [
+                "Dude created androids, what the hell do you think?",
+                "A dickhead. Just. A fucking dickhead. Too bad I'm related to that fucker.",
+                "Why the fuck are you asking me?!"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about north"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "The android revolution chick? Not much tbh",
+                "Don't care for her.",
+                "Isn't she Robo-Jesus' girlfriend or something?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about simon"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "The android revolution dude? Not much tbh",
+                "Don't care for him.",
+                "Isn't he Robo-Jesus' boyfriend or something?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about josh"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "The android revolution dude? Not much tbh",
+                "Don't care for him.",
+                "Isn't he one of Robo-Jesus' friends or something?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about rupert"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "He's a weird bird android dude, right?",
+                "Whomst?",
+                "Who's that again?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about ralph"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "Don't fucking know who that is, my dude.",
+                "Who's that again?",
+                "Whomst?"
+                ]
+        embed.set_thumbnail(url=eyeroll)
+
+    elif message.content.startswith ("gavin what do you think about the tracis"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "Those android lesbians? They're a cute couple I guess.",
+                "I mean, they're a cute couple but other than that, i don't give a shit.",
+                "Don't really give a shit, sorry."
+                ]
+        embed.set_thumbnail(url=default)
+
+    elif message.content.startswith ("gavin what do you think about alice"):
+        if servers[server.id]["annoyance"] >15:
+            await add_annoyance(servers, server, 1)
+            possible_responses = [
+                    "A creepy android kid.",
+                    "I swear to God, these child androids are fucking creepy.",
+                    "Isn't she one of those child androids?"
+                    ]
+            embed.set_thumbnail(url=disgusting)
+
+        elif servers[server.id]["annoyance"] <16:
+            await add_annoyance(servers, server, 1)
+            possible_responses = [
+                    "Gotta admit, for a robot, she's adorable.",
+                    "The robo kid? Not gonna lie, she looks just like a real kid.",
+                    ]
+            embed.set_thumbnail(url=default)
+
+    elif message.content.startswith ("gavin what do you think about kara"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "Whomst?",
+                "Dafaq you're asking me? I have literally nothing to do with her.",
+                "Who's that again?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about luther"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "Dafaq you're asking me? I have literally nothing to do with him.",
+                "Whomst?",
+                "Who's that again?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about perkins"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "Dafaq you're asking me? I have literally nothing to do with him.",
+                "Whomst?",
+                "Who's that again?"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith ("gavin what do you think about sumo"):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "A walking flea circus. Stupid fucking dog.",
+                "Annoying overgrown puppy.",
+                "Why the hell are you asking me for Anderson's dog?!"
+                ]
+        embed.set_thumbnail(url=disgusting)
+
 
 ###### who is ######
 
@@ -864,6 +1008,54 @@ async def on_message(message):
                 ]
         embed.set_thumbnail(url=eyeroll)
 
+###### how is... ######
+    elif message.content.startswith (("gavin how is hank", "gavin how is fowler", "gavin how is connor","gavin how is nines", "gavin how is chris")):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "Uh, he's good I guess?",
+                "No clue, haven't talked to him lately.",
+                "I think he's doing well. I think."
+                ]
+        embed.set_thumbnail(url=default)
+
+    elif message.content.startswith (("gavin how is markus", "gavin how is simon", "gavin how is josh","gavin how is perkins", "gavin how is luther", "gavin how is rupert", "gavin how is ralph")):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "What do I care?",
+                "I've literally never talked to him, what do I care?",
+                ]
+        embed.set_thumbnail(url=disgusting)
+
+    elif message.content.startswith (("gavin how is sumo")):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "He's literally a dog, how the hell is that flee circus supposed to be?"
+                ]
+        embed.set_thumbnail(url=default)
+
+    elif message.content.startswith (("gavin how is gilbert")):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "Gil's pretty good!",
+                "Gil's doing pretty well, Fucknugget too!"
+                ]
+        embed.set_thumbnail(url=default)
+
+    elif message.content.startswith (("gavin how is tina")):
+        possible_responses = [
+                "She's good! She recently got engaged to her girlfriend!",
+                "I think she's doing well.",
+                "Good, I hope!"
+                ]
+        embed.set_thumbnail(url=winkwonk)
+
+    elif message.content.startswith (("gavin how is north", "gavin how is traci", "gavin how is kara","gavin how is alice")):
+        await add_annoyance(servers, server, 1)
+        possible_responses = [
+                "What do I care?",
+                "I've literally never talked to her, what do I care?",
+                ]
+        embed.set_thumbnail(url=disgusting)
 
 
 ###### other stuff ######
@@ -874,6 +1066,31 @@ async def on_message(message):
               "Gavin YES"
               ]
            embed.set_thumbnail(url=smug)
+
+    elif message.content == "gavin you're cute":
+       possible_responses = [
+          "What the fuck, I'm not cute.",
+          "Oh, back off, I'm not fucking cute.",
+          "Fuck you, I'm not fucking cute."
+          ]
+       embed.set_thumbnail(url=emb3)
+
+    elif message.content == "gavin you're adorable":
+       possible_responses = [
+          "What the fuck, I'm not adorable.",
+          "Oh, back off, I'm not fucking adorable.",
+          "Fuck you, I'm not fucking adorable."
+          ]
+       embed.set_thumbnail(url=emb3)
+
+    elif message.content == "gavin you're a good boy":
+       possible_responses = [
+          "Do I look like a fucking dog to you?!.",
+          "Hah, hah, hah. Funny.",
+          "Fuck you, I'm not a dog. Or Connor, for that matter.",
+          "Uh, thanks? What kind of compliment is that?!"
+          ]
+       embed.set_thumbnail(url=emb3)
 
 ###### how are you? ######
 
@@ -1157,16 +1374,9 @@ async def on_message(message):
           embed.set_thumbnail(url=default)
 
     elif message.content.startswith(("bye gavin", "goodbye gavin")):
-        possible_responses = [
-          "Bye. Dickhead.",
-          ]
-        embed.set_thumbnail(url=smug)
-    elif message.content.startswith(("gavin i'd die for you", "gavin i'll die for you", "gavin i would die for you")):
-        possible_responses = [
-           "Then perish.",
-           "Trust me, you will.",
-           ]
-        embed.set_thumbnail(url=smug)
+       possible_responses = [
+         "Bye. Dickhead.",
+         ]
 
 
 ###### a lot of fuck ######
@@ -1338,6 +1548,12 @@ async def on_message(message):
            ]
         embed.set_thumbnail(url=smug)
 
+    elif message.content.startswith(("gavin i'd die for you", "gavin i'll die for you", "gavin i would die for you")):
+        possible_responses = [
+           "Then perish.",
+           "Trust me, you will.",
+           ]
+        embed.set_thumbnail(url=smug)
 ###### just words ######
 
     elif message.content.startswith("owo"):
@@ -1451,6 +1667,10 @@ async def dec(context):
     with open("servers.json", "w") as f:
         json.dump(servers, f)
     await client.say(servers[server.id]["annoyance"])
+
+@client.command(pass_context=True)
+async def servers(context):
+    await client.say(len(client.servers))
 
 
 client.run(str(os.environ.get("TOKEN")))
