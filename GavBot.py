@@ -386,7 +386,7 @@ async def kinkshame(context, target: discord.Member):
 @client.command(name="nsfw")
 async def nsfw():
     embed = discord.Embed(**em)
-    embed.set_thumbnail(url=mad3)
+    embed.set_thumbnail(url=mad2)
     embed.add_field(name='\u200b', value= "THIS IS NSFW!", inline=False)
     embed.set_footer(text="The previous image is going to be replaced soon, dw!")
     await client.say(embed=embed)
