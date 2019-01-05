@@ -166,6 +166,7 @@ async def help(context):
     embed.add_field(name='\u200b', value= "**DEVELOPMENT**", inline=False)
     embed.add_field(name='support', value= "Something wrong?", inline=True)
     embed.add_field(name='updates', value= "What's new?", inline=True)
+    embed.add_field(name='credits', value= "Art credits.", inline=True)
 
 
     await client.say(embed=embed)
@@ -189,6 +190,7 @@ async def commands(context):
     embed.add_field(name='whois', value= "Who a member is.", inline=True)
     embed.add_field(name='clear', value= "Clears all info on a member.", inline=True)
     embed.add_field(name='say', value= "Make Gavin say shit in a specified channel. Admin command.", inline=True)
+    embed.add_field(name='tiddies', value= "Have a random picture of Gavin's tiddies.", inline=True)
 
     await client.send_message(context.message.author, embed=embed)
 
@@ -232,18 +234,23 @@ async def annoyance(context):
 async def support(context):
     embed = discord.Embed(**em)
     embed.set_thumbnail(url=winkwonk)
-
     embed.add_field(name='**Got any issues or suggestions? Please join the support server!**', value= "https://discord.gg/E6GBEjV", inline=False)
-
     await client.say(embed=embed)
 
 @client.command(pass_context=True)
 async def updates(context):
     embed = discord.Embed(**em)
     embed.set_thumbnail(url=winkwonk)
+    embed.add_field(name='**RECENT UPDATES**', value= "**UPDATE 25/12/18:** GavBot now reacts to asking who certain characters are. \n **UPDATE 27/12/18:** Added the g!add, g!whois and g!clear commands, fixed some minor typos. \n **UPDATE 29/12/18:** Added the g!say command and the ability to ask who Gavin is, fixed some more minor things. \n **UPDATE 30/12/18:** You can ask him how certain characters are, and his opinon on them. He now reacts to being called cute, adorable and a good boy. \n **UPDATE 05/01/19:** Added the g!tiddies command, edited the g!nsfw command and added long overdue art credits, which you can see using g!credits.", inline=False)
+    await client.say(embed=embed)
 
-    embed.add_field(name='**RECENT UPDATES**', value= "**UPDATE 25/12/18:** GavBot now reacts to asking who certain characters are. \n **UPDATE 27/12/18:** Added the g!add, g!whois and g!clear commands, fixed some minor typos. \n **UPDATE 29/12/18:** Added the g!say command and the ability to ask who Gavin is, fixed some more minor things. \n **UPDATE 30/12/18:** You can ask him how certain characters are, and his opinon on them. He now reacts to being called cute, adorable and a good boy.", inline=False)
-
+@client.command(pass_context=True)
+async def credits(context):
+    embed = discord.Embed(**em)
+    embed.set_thumbnail(url=winkwonk)
+    embed.add_field(name='**Art Credits**', value= "\u200b", inline=False)
+    embed.add_field(name='**Faces/thumbanils: Me**', value= "\u200b", inline=False)
+    embed.add_field(name='**Art for g!nut, g!love, g!tiddies and "who is nines": Same-Side**', value= "Tumblr: https://same-side.tumblr.com", inline=False)
     await client.say(embed=embed)
 
 #@has_permissions(administrator=True)
@@ -379,7 +386,9 @@ async def kinkshame(context, target: discord.Member):
 @client.command(name="nsfw")
 async def nsfw():
     embed = discord.Embed(**em)
-    embed.set_image(url="https://media.discordapp.net/attachments/475918776857133056/477203747509108756/1533844628299.png?width=623&height=670")
+    embed.set_thumbnail(url=mad3)
+    embed.add_field(name='\u200b', value= "THIS IS NSFW!", inline=False)
+    embed.set_footer(text="The previous image is going to be replaced soon, dw!")
     await client.say(embed=embed)
 
 
@@ -471,6 +480,23 @@ async def nut():
     await client.say(embed=embed)
 
 
+@client.command(name="tiddies")
+async def tiddies():
+    embed = discord.Embed(**em)
+    pics = [
+    "https://cdn.discordapp.com/attachments/506242430375428107/531217153341521952/image0.jpg",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531217167853682688/image0.png",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531217219556868116/image0.jpg",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531217421504348181/image0.png",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531217431352573982/image0.png",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531217806507638814/image0.png",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531218712129306626/image0.png",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531218722652684298/image0.png",
+    "https://cdn.discordapp.com/attachments/506242430375428107/531218739270778905/image0.png"
+    ]
+    embed.set_image(url=random.choice(pics))
+    await client.say(embed=embed)
+    
 ##@client.command(name="")
 ##
 ##async def ():
@@ -1628,13 +1654,13 @@ async def on_message(message):
     time.sleep(1)
     embed.add_field(name='\u200b', value= random.choice(possible_responses), inline=False)
     if message.content == "gavin":
-        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+        embed.set_footer(text="*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*")
     elif message.content == "hello gavin":
-        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+        embed.set_footer(text="*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*")
     elif message.content == "hi gavin":
-        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+        embed.set_footer(text="*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*")
     elif message.content == "hey gavin":
-        embed.add_field(name='\u200b', value= "*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*", inline=False)
+        embed.set_footer(text="*I'm still working my shit out, in development or whatever, so don't be a dick, 'kay?*")
     await client.send_message(message.channel, embed=embed)
     await client.process_commands(message)
 
