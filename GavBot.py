@@ -250,7 +250,8 @@ async def credits(context):
     embed.set_thumbnail(url=winkwonk)
     embed.add_field(name='**Art Credits**', value= "\u200b", inline=False)
     embed.add_field(name='**Faces/thumbanils: Me**', value= "\u200b", inline=False)
-    embed.add_field(name='**Art for g!nut, g!love, g!tiddies and "who is nines": Same-Side**', value= "Tumblr: https://same-side.tumblr.com", inline=False)
+    embed.add_field(name='**Art for g!nut, g!love, and "who is nines": Same-Side**', value= "Tumblr: https://same-side.tumblr.com", inline=False)
+    embed.add_field(name='**Art for g!tiddies": Same-Side, DIM, JolieMariella**', value= "Same-Side: https://same-side.tumblr.com \n DIM: https://deep-in-mind67.tumblr.com \n JolieMariella: https://joliemariella.tumblr.com", inline=False)
     await client.say(embed=embed)
 
 #@has_permissions(administrator=True)
@@ -492,7 +493,14 @@ async def tiddies():
     "https://cdn.discordapp.com/attachments/506242430375428107/531217806507638814/image0.png",
     "https://cdn.discordapp.com/attachments/506242430375428107/531218712129306626/image0.png",
     "https://cdn.discordapp.com/attachments/506242430375428107/531218722652684298/image0.png",
-    "https://cdn.discordapp.com/attachments/506242430375428107/531218739270778905/image0.png"
+    "https://cdn.discordapp.com/attachments/506242430375428107/531218739270778905/image0.png",
+    "https://cdn.discordapp.com/attachments/481001195016552453/531644268171886592/160832224-288-k274234.jpg",
+    "https://cdn.discordapp.com/attachments/481001195016552453/531642143652052992/Screenshot_20190106-1915072.png",
+    "https://cdn.discordapp.com/attachments/481001195016552453/531641038700281856/baby_gil.png",
+    "https://cdn.discordapp.com/attachments/481001195016552453/531641038167736320/tid_grab.png",
+    "https://cdn.discordapp.com/attachments/481001195016552453/531641037656162314/CropperCapture1355.png",
+    "https://cdn.discordapp.com/attachments/511378182990069767/531634698938613760/gtiddies1.png",
+    "https://cdn.discordapp.com/attachments/511378182990069767/531634704927948800/gtiddies2.png",
     ]
     embed.set_image(url=random.choice(pics))
     await client.say(embed=embed)
