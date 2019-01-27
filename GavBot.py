@@ -22,7 +22,7 @@ client.remove_command("help")
 @client.event
 async def on_ready():
     print("I'm in")
-    await client.change_presence(game=discord.Game(name="Merry Crisis!"))
+    await client.change_presence(game=discord.Game(name="doing fucking paperwork"))
 
 
 @client.event
@@ -250,8 +250,7 @@ async def credits(context):
     embed.set_thumbnail(url=winkwonk)
     embed.add_field(name='**Art Credits**', value= "\u200b", inline=False)
     embed.add_field(name='**Faces/thumbanils: Me**', value= "\u200b", inline=False)
-    embed.add_field(name='**Art for g!nut, g!love, and "who is nines": Same-Side**', value= "Tumblr: https://same-side.tumblr.com", inline=False)
-    embed.add_field(name='**Art for g!tiddies": Same-Side, DIM, JolieMariella**', value= "Same-Side: https://same-side.tumblr.com \n DIM: https://deep-in-mind67.tumblr.com \n JolieMariella: https://joliemariella.tumblr.com", inline=False)
+    embed.add_field(name='**Art for g!nut, g!love, g!tiddies and "who is nines": Same-Side**', value= "Tumblr: https://same-side.tumblr.com", inline=False)
     await client.say(embed=embed)
 
 #@has_permissions(administrator=True)
@@ -402,7 +401,7 @@ async def roast(context, target: discord.Member):
     if target.id == "476176194522316801":
        embed.set_thumbnail(url=eyeroll)
        embed.add_field(name='\u200b', value= "Oh, you think you're smart, huh? Phcking bitch.", inline=False)
-    elif target.id == "477027536660856872":
+    elif target.id == "534919332355112971":
         possible_responses = [
             "Your uh... your ass looks like plastic! Not that I've been checking, dipshit.",
             "Your eyes are so confusing, I keep getting fucking lost. Wait, no, that, uh, that's not what i meant -",
@@ -453,7 +452,7 @@ async def verse(target: discord.Member):
             "That's personal, you fucking asswipe!",
         ]
        embed.set_thumbnail(url=mad2)
-    elif target.id == "477027536660856872":
+    elif target.id == "534919332355112971":
         possible_responses = [
             "Why would I care? Phck off! I've never thought about that! Now back the fuck off!",
             "Why are you asking me?! Go ask him yourself!",
@@ -504,7 +503,7 @@ async def tiddies():
     ]
     embed.set_image(url=random.choice(pics))
     await client.say(embed=embed)
-    
+
 ##@client.command(name="")
 ##
 ##async def ():
@@ -830,7 +829,7 @@ async def on_message(message):
     elif message.content == "gavin who is connor":
         await add_annoyance(servers, server, 1)
         possible_responses = [
-                "What is he always says? The android sent by CyberLife? What a prick.",
+                "What is it he always says? The android sent by CyberLife? What a prick.",
                 "Fuckin' android detective.",
                 "A fucking prick, that's who he is.",
                 "Anderson's plastic pet, lol."
@@ -1609,7 +1608,12 @@ async def on_message(message):
            return
         elif message.server.id == "475904821053095967":
            user = message.author
-           shame = discord.utils.get(message.server.roles,name='shame corner')
+           shame = discord.utils.get(message.server.roles,name='gay baby jail')
+           with open("servers.json", "r") as f:
+               servers = json.load(f)
+           await add_annoyance(servers, server, 10)
+           with open("servers.json", "w") as f:
+               json.dump(servers, f)
            await client.add_roles(user, shame)
            embed.set_thumbnail(url=mad2)
            possible_responses = [
