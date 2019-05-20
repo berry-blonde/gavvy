@@ -436,8 +436,8 @@ async def roast(context, target: discord.Member):
     await client.say(embed=embed)
 
 
-@client.command(name="verse")
-async def verse(target: discord.Member):
+@client.command(name="verse", pass_context=True)
+async def verse(context, target: discord.Member):
     embed = discord.Embed(**em)
     if target.id == "476176194522316801":
        server = context.message.author.server
@@ -1302,11 +1302,10 @@ async def on_message(message):
 
 
     elif message.content.startswith("glomps gavin"):
-       if servers[server.id]["annoyance"] < 66:
-          embed.set_thumbnail(url=weeb)
-          possible_responses = [
-             "***OWO what's this?***"
-             ]
+        embed.set_thumbnail(url=weeb)
+        possible_responses = [
+        "***OWO what's this?***"
+        ]
 
     elif message.content == "calm your tits gavin":
        if servers[server.id]["annoyance"] <31:
@@ -1590,18 +1589,16 @@ async def on_message(message):
 ###### just words ######
 
     elif message.content.startswith("owo"):
-        if servers[server.id]["annoyance"] <66:
-            embed.set_thumbnail(url=weeb)
-            possible_responses = [
-            "uwu"
-            ]
+        embed.set_thumbnail(url=weeb)
+        possible_responses = [
+        "uwu"
+        ]
 
     elif message.content.startswith("uwu"):
-        if servers[server.id]["annoyance"] <66:
-            embed.set_thumbnail(url=weeb)
-            possible_responses = [
-            "***OwO***"
-            ]
+        embed.set_thumbnail(url=weeb)
+        possible_responses = [
+        "***OwO***"
+        ]
 
     elif "vore" in message.content:
         if message.author.id == "508110104726339633":
